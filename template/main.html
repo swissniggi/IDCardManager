@@ -3,68 +3,74 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>IDCardManager</title>
-        <link rel="stylesheet" type="text/css" href="../kijs/css/kijs.gui.php">
+        <link rel="stylesheet" type="text/css" href="../kijs/css/kijs.gui.css">
         <link rel="stylesheet" type="text/css" href="css/IDCardCreator_Style.css">    
 
-        <script src="../kijs/js/kijs.js"></script>
-        <script src="../kijs/js/kijs.String.js"></script>
-        <script src="../kijs/js/kijs.Array.js"></script>
-        <script src="../kijs/js/kijs.Object.js"></script>
-        <script src="../kijs/js/kijs.Date.js"></script>
-        <script src="../kijs/js/kijs.Dom.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.String.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Array.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Object.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Date.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Dom.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Grafic.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Navigator.js"></script>
 
-        <script src="../kijs/js/kijs.Observable.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Observable.js"></script>
 
-        <script src="../kijs/js/kijs.Ajax.js"></script>
-        <script src="../kijs/js/kijs.Rpc.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Ajax.js"></script>
+        <script type="text/javascript" src="../kijs/js/kijs.Rpc.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Dom.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.ToolTip.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Element.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Container.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.ViewPort.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Dom.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.ToolTip.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Element.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Container.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.SpinBox.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.ViewPort.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.Icon.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Button.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.ButtonGroup.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Icon.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Button.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.ButtonGroup.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.HeaderBar.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.FooterBar.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Resizer.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Splitter.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Panel.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Resizer.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Splitter.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Panel.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.PanelBar.js"></script>
+        
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.TimePicker.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.DatePicker.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.Mask.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.LayerManager.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.Window.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.MsgBox.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Mask.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.LayerManager.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Window.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.MsgBox.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.CornerTipContainer.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.DataView.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.DataViewElement.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.CornerTipContainer.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.DataView.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.DataViewElement.js"></script>
 
-        <script src="../kijs/js/gui/kijs.gui.Rpc.js"></script>
-        <script src="../kijs/js/gui/kijs.gui.FormPanel.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.Rpc.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/kijs.gui.FormPanel.js"></script>
 
-        <script src="../kijs/js/gui/field/kijs.gui.field.js"></script>
-        <script src="../kijs/js/gui/field/kijs.gui.field.Field.js"></script>
-        <script src="../kijs/js/gui/field/kijs.gui.field.Text.js"></script>
-        <script src="../kijs/js/gui/field/kijs.gui.field.DateTime.js"></script>
-        <script src="../kijs/js/gui/field/kijs.gui.field.Number.js"></script>
-        <script src="../kijs/js/gui/field/kijs.gui.field.Password.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.Field.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.Text.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.DateTime.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.Number.js"></script>
+        <script type="text/javascript" src="../kijs/js/gui/field/kijs.gui.field.Password.js"></script>
 
-        <script src="js/idcardmanager.js"></script>
-        <script src="js/idcardmanager.App.js"></script>
+        <script type="text/javascript" src="js/idcardmanager.js"></script>
+        <script type="text/javascript" src="js/idcardmanager.App.js"></script>
+        <script type="text/javascript" src="js/idcardmanager.LoginWindow.js"></script>
         
     </head>
     <body>
-        <script>
+        <script type="text/javascript">
             kijs.isReady(function(){
                 var app = new idcardmanager.App({
                     ajaxUrl: 'index.php'
                 });
-                app.run();
+                app.runApp();
             });
         </script>
     </body>
