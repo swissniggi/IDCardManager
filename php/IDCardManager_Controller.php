@@ -67,6 +67,10 @@ class IDCardManager_Controller {
                             }
                             break;
                         
+                        case 'idcardmanager.logoutUser':
+                            session_destroy();
+                            break;
+                        
                         case 'idcardmanager.searchUsers':
                             break;
                         

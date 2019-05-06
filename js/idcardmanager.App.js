@@ -196,7 +196,15 @@ idcardmanager.App = class idcardmanager_App {
     
     //LISTENERS
     _onBtnLogoutClick() {
-        
+        sessionStorage.clear();
+        this._rpc.do('idcardmanager.logoutUser', null, 
+        function() {
+            // Viewport zerstören
+            this._viewport.destruct();
+            
+            // App neu starten
+            this.run();
+        }, this, false, this._viewport, 'dom', false);
     }
     
     _onBtnPrintClick() {
