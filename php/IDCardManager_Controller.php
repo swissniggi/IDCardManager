@@ -3,7 +3,7 @@ class IDCardManager_Controller {
 	
     protected $arrayLdap = [];
     protected $sUsername = null;
-    protected $sLogpath = 'C:/changelog.txt';
+    protected static $sLogpath = 'C:/changelog.txt';
     // --------------------------------------------------------------
     // CONSTRUCTOR
     // --------------------------------------------------------------
@@ -88,7 +88,7 @@ class IDCardManager_Controller {
     
     public static function writeLog($stringMsg) {
         $dateNow = date('d.m.Y, H:i:s');
-        file_put_contents($this->sLogpath, $dateNow.' '.$stringMsg);
+        file_put_contents(self::$sLogpath, $dateNow.' '.$stringMsg);
     }
     
     // --------------------------------------------------------------
