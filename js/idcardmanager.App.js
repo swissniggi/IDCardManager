@@ -45,7 +45,7 @@ idcardmanager.App = class idcardmanager_App {
                 // Caption des Logout-Buttons setzen
                 this._viewport.render();
                 let sCaption = 'angemeldet als ' + sessionStorage.getItem('Benutzer') + '&nbsp;';
-                mainPanel.panelBar.headerBar.down('btnLogout').caption = sCaption;
+                mainPanel.headerBar.down('btnLogout').caption = sCaption;
             } else {
                 this.showLoginWindow();
             }
