@@ -115,7 +115,7 @@ idcardmanager.App = class idcardmanager_App {
                             },{
                                 xtype: 'kijs.gui.field.DateTime',
                                 name: 'valid',
-                                label: 'Gültigkeitsdatum',
+                                label: 'Gültig bis',
                                 labelWidth: 80,
                                 hasTime: false
                             },{
@@ -209,7 +209,7 @@ idcardmanager.App = class idcardmanager_App {
         // Caption des Logout-Buttons setzen
         this._viewport.render();
         let sCaption = 'angemeldet als ' + sUsername + '&nbsp;';
-        this._viewport.down('mainPanel').headerBar.down('btnLogout').caption = sCaption; 
+        //this._viewport.down('mainPanel').headerBar.down('btnLogout').caption = sCaption; 
         this._loginWindow.destruct();
     }
 };
