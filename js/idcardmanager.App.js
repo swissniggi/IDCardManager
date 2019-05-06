@@ -92,7 +92,7 @@ idcardmanager.App = class idcardmanager_App {
                         xtype: 'kijs.gui.Panel',
                         caption: 'Suche',
                         collapsible: 'left',
-                        width: 240,
+                        width: 280,
                         defaults:{
                             style:{
                                 margin: '10px'
@@ -103,23 +103,23 @@ idcardmanager.App = class idcardmanager_App {
                                 xtype: 'kijs.gui.field.Text',
                                 name: 'name',
                                 label: 'Name',
-                                labelWidth: 80
+                                labelWidth: 100
                             },{
                                 xtype: 'kijs.gui.field.Text',
                                 name: 'firstName',
                                 label: 'Vorname',
-                                labelWidth: 80
+                                labelWidth: 100
                             },{
                                 xtype: 'kijs.gui.field.Number',
                                 name: 'employeeId',
-                                label: 'Mitarbeiternr.',
-                                labelWidth: 80,
+                                label: 'Personalnr.',
+                                labelWidth: 100,
                                 minValue: 0
                             },{
                                 xtype: 'kijs.gui.field.DateTime',
                                 name: 'valid',
                                 label: 'Gültig bis',
-                                labelWidth: 80,
+                                labelWidth: 100,
                                 hasTime: false
                             },{
                                 xtype: 'kijs.gui.Icon',
