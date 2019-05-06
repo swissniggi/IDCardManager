@@ -52,7 +52,7 @@ class IDCardManager_Controller {
                             $objectResponse->data = new stdClass();
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                $this->_writeLog($arrayReturn->getMessage());
+                                self::writeLog($arrayReturn->getMessage());
                                 if ($arrayReturn->getCode() === 123) {
                                     $objectResponse->errorMsg = $arrayReturn->getMessage();
                                 } else {
@@ -74,7 +74,7 @@ class IDCardManager_Controller {
                             break;
                     }
                 } catch (Exception $ex) {
-                    $this->writeLog($ex->getMessage());
+                    self::writeLog($ex->getMessage());
                     $objectResponse->errorMsg = $ex->getMessage();
                 }
                 $objectResponses[] = $objectResponse;
