@@ -44,8 +44,8 @@ idcardmanager.App = class idcardmanager_App {
 
                 // Caption des Logout-Buttons setzen
                 this._viewport.render();
-                let caption = 'angemeldet als ' + sessionStorage.getItem('Benutzer') + '&nbsp;';
-                mainPanel.headerBar.down('btnLogout').caption = caption;
+                let sCaption = 'angemeldet als ' + sessionStorage.getItem('Benutzer') + '&nbsp;';
+                mainPanel.headerBar.down('btnLogout').caption = sCaption;
             } else {
                 this.showLoginWindow();
             }
@@ -203,6 +203,13 @@ idcardmanager.App = class idcardmanager_App {
     }
     
     _onLoginWindowAfterSave() {
+        let sUsername = this._loginWindow.down('username').value;
+        sessionStorage.setItem('Benutzer', sUsername);
         
+        // Caption des Logout-Buttons setzen
+        this._viewport.render();
+        let sCaption = 'angemeldet als ' + sUsername + '&nbsp;';
+        this._viewport.down('mainPanel').headerBar.down('btnLogout').caption = sCaption; 
+        this._loginWindow.destruct();
     }
 };
