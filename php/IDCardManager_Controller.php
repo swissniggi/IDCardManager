@@ -131,6 +131,66 @@ class IDCardManager_Controller {
         return utf8_encode($sLastName);
     }
     
+    private function _getPattern($objectFilter) {
+        $sLastName = utf8_decode($objectFilter->name);
+        $sFirstName = utf8_decode($objectFilter->firstName);
+        $sEmployeeId = $objectFilter->employeeId;
+        $sValidDate = $objectFilter->valid;
+        
+        $pattern = '(&';
+        
+        if ($sLastName !== '') {
+            $pattern .= '(sn='.$sLastName.')';
+        }
+        
+        if ($sFirstName !== '') {
+            $pattern .= '(givenName='.$sFirstName.')';
+        }
+        
+        if ($sEmployeeId !== '') {
+            $pattern .= '(employeeid='.$sEmployeeId.')';
+        }
+        
+        if ($sValidDate !== '') {
+            // Datum in valides Format umwandeln
+            $nTimeBetween1601And1970 = 11644473600;
+            $floatValidSek = floatval(date("U", strtotime($objectFilter->valid)) + $nTimeBetween1601And1970);
+            $floatValidNano = $floatValidSek * 1.E7;       
+            $floatValid = sprintf('%.0f',$floatValidNano);
+            
+            $pattern .= '(accountexpires='.$floatValid.')';
+        }   
+        $pattern .= ')';
+        
+        return $pattern;
+    }
+    
+    private function _getTitle($arrayUserInfo, $intIndex) {
+        if (array_key_exists('title', $arrayUserInfo[$intIndex])) {
+            $sTitle = $arrayUserInfo[$intIndex]['title'][0];
+        } else {
+            $sTitle = '--';
+        }
+        return utf8_encode($sTitle);
+    }
+    
+    private function _getValidDate($arrayUserInfo, $intIndex) {
+        if (array_key_exists('accountexpires', $arrayUserInfo[$intIndex])) {
+            if($arrayUserInfo[$intIndex]['accountexpires'][0] !== '0' && $arrayUserInfo[$intIndex]['accountexpires'][0] !== '9223372036854775807') {
+                $floatAccExp = floatval($arrayUserInfo[$intIndex]['accountexpires'][0]);
+                $floatDate = $floatAccExp/1.E7-11644473600;
+                $intDate = intval($floatDate);
+                $dateValidDate = date('d.m.Y', $intDate);
+            } else {
+                // 31. Dezember des laufenden Jahres wenn kein Datum gesetzt
+                $dateValidDate = date('d.m.Y', strtotime('12/31'));
+            }
+        } else {
+            $dateValidDate = date('d.m.Y', strtotime('12/31'));
+        }
+        return $dateValidDate;
+    }
+    
     private function _loginUser($arrayUserData) {
         try{
             $sUsername = mb_strtolower($arrayUserData->username);
@@ -175,5 +235,13 @@ class IDCardManager_Controller {
             $arrayReturn = $ex;
         }
         return $arrayReturn;
+    }
+    
+    private function _searchADUser($arrayFilter) {
+        
+    }
+    
+    private function _updateADUser($arrayUserData) {
+        
     }
 }

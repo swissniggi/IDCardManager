@@ -53,7 +53,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
         this._formPanel = this._createFormPanel();
         const config = {
             caption: 'Editor',
-            iconChar: '&#xf023',
+            iconChar: '&#xf044',
             width: 300,
             closable: false,
             maximizable: false,
@@ -117,6 +117,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                     caption: 'Speichern',
                     name: 'btnSave',
                     isDefault: true,
+                    iconChar: '&#xf00c',
                     width: 100,
                     height: 30,
                     on:{
