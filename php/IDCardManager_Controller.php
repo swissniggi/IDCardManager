@@ -3,7 +3,7 @@ class IDCardManager_Controller {
 	
     protected $arrayLdap = [];
     protected $sUsername = null;
-    protected static $sLogpath = 'C:/changelog.txt';
+    protected static $sLogpath = 'C:/logs/changelog.txt';
     // --------------------------------------------------------------
     // CONSTRUCTOR
     // --------------------------------------------------------------
