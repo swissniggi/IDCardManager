@@ -1,4 +1,4 @@
 div.kijs-spinbox {
-    width: inherit;
-    height: inherit;
+    width: inherit !important;
+    height: inherit !important;
 }
