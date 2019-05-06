@@ -4,9 +4,9 @@
 idcardmanager.App = class idcardmanager_App { 
 
     constructor(config={}) {
-
-            this._userDataView = null;
+       
             this._loginWindow = null;
+            this._userDataView = null;
             this._viewport = null;
 
             // RPC-Instanz
@@ -45,7 +45,7 @@ idcardmanager.App = class idcardmanager_App {
                 // Caption des Logout-Buttons setzen
                 this._viewport.render();
                 let sCaption = 'angemeldet als ' + sessionStorage.getItem('Benutzer') + '&nbsp;';
-                mainPanel.headerBar.up('btnLogout').caption = sCaption;
+                mainPanel.headerBar.containerRightEl.down('btnLogout').caption = sCaption;
             } else {
                 this.showLoginWindow();
             }
