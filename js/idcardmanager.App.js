@@ -124,8 +124,6 @@ idcardmanager.App = class idcardmanager_App {
                             },{
                                 xtype: 'kijs.gui.Icon',
                                 cls: 'help-icon',
-                                height: 18,
-                                width: 18,
                                 iconChar: '&#xf059',
                                 toolTip: 'Mindestens ein Feld muss ausgefüllt werden.'
                                         +'<br />Das Zeichen &#x2731; kann als Wildcard eingesetzt werden.',
@@ -212,7 +210,28 @@ idcardmanager.App = class idcardmanager_App {
     }
     
     _onBtnSearchClick() {
+        let sName = this._viewport.down('name').value;
+        let sFirstName = this._viewport.down('firstName').value;
+        let sEmployeeId = this._viewport.down('employeeId').value;
+        let sValidDate = this._viewport.down('valid').value;
         
+        if (sName !== '' || sFirstName !== '' || sEmployeeId !== '' || sValidDate) {
+            let data = {
+                name : sName,
+                firstName : sFirstName,
+                employeeId : sEmployeeId,
+                validDate : sValidDate
+            };
+            this._UserDataView.load(data);
+
+            // Suchfelder leeren
+            this._viewport.down('name').value = '';
+            this._viewport.down('firstName').value = '';
+            this._viewport.down('employeeId').value = '';
+            this._viewport.down('valid').value = '';
+        } else {
+            kijs.gui.MsgBox.alert('Achtung','Mindestens ein Feld muss ausgefüllt werden!');
+}
     }
     
     _onLoginWindowAfterSave() {
