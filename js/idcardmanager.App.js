@@ -127,7 +127,8 @@ idcardmanager.App = class idcardmanager_App {
                                 toolTip: 'Mindestens ein Feld muss ausgefüllt werden.'
                                         +'<br />Das Zeichen &#x2731; kann als Wildcard eingesetzt werden.',
                                 style:{
-                                    margin: '0 10px 0 0'
+                                    margin: '0 10px 0 10px',
+                                    color: '#4398dd'
                                 }
                             },{
                                 xtype: 'kijs.gui.Button',
@@ -141,7 +142,8 @@ idcardmanager.App = class idcardmanager_App {
                                     context: this
                                 },
                                 style:{
-                                    margin: '0 10px 10px 10px'
+                                    margin: '0 10px 10px 10px',
+                                    float: 'right'
                                 }
                             }
                         ]
