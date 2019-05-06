@@ -198,7 +198,7 @@ idcardmanager.App = class idcardmanager_App {
         this._rpc.do('idcardmanager.logoutUser', null, 
         function() {
             // Viewport zerstören
-            this._viewport.destroy();
+            this._viewport.destruct();
             
             // App neu starten
             this.runApp();
