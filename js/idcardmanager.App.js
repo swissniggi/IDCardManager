@@ -201,7 +201,7 @@ idcardmanager.App = class idcardmanager_App {
             this._viewport = null;
             
             // App neu starten
-            this.run();
+            this.runApp();
         }, this, false, this._viewport, 'dom', false);
     }
     
