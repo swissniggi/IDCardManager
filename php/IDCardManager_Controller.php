@@ -92,7 +92,7 @@ class IDCardManager_Controller {
     
     public static function writeLog($stringMsg) {
         $dateNow = date('d.m.Y, H:i:s');
-        file_put_contents(self::$sLogpath, $dateNow.' '.$stringMsg, APPEND_FILE);
+        file_put_contents(self::$sLogpath, $dateNow.' '.$stringMsg, FILE_APPEND);
     }
     
     // --------------------------------------------------------------
