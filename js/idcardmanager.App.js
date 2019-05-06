@@ -40,7 +40,7 @@ idcardmanager.App = class idcardmanager_App {
         this._rpc.do('idcardmanager.checkLogin', null, 
         function(response) {
             if (response.username !== false) {
-                sessionStorage.setItem('Benutzer', response.data.username);
+                sessionStorage.setItem('Benutzer', response.username);
 
                 // Caption des Logout-Buttons setzen
                 this._viewport.render();
