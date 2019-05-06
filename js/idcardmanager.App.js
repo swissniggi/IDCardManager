@@ -119,6 +119,8 @@ idcardmanager.App = class idcardmanager_App {
                                 xtype: 'kijs.gui.field.DateTime',
                                 name: 'valid',
                                 label: 'Gültig bis',
+                                width: 'inherit',
+                                height: 'inherit',
                                 labelWidth: 100,
                                 hasTime: false
                             },{
