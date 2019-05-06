@@ -150,7 +150,7 @@ class IDCardManager_Controller {
             $arrayGroupInfo = ldap_get_entries($con, $arrayGroupSearchResult);
 
             // vollständigen Namen ermitteln
-            $arrayNameSearchResult = ldap_search($con, $this->arrayLdap->dn, '(smaaccoutname='.$sUsername.')');
+            $arrayNameSearchResult = ldap_search($con, $this->arrayLdap->dn, '(samaccountname='.$sUsername.')');
             $arrayUserInfo = ldap_get_entries($con, $arrayNameSearchResult);
             $sCommonName = $arrayUserInfo[0]['cn'][0];
             
