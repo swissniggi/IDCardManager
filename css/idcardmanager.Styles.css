@@ -1,5 +1,6 @@
 div.kijs-spinbox {
     width: inherit !important;
+    min-width: inherit !important;
     height: inherit !important;
     z-index: 100000;
 }
