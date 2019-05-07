@@ -141,10 +141,10 @@ idcardmanager.App = class idcardmanager_App {
                         footerStyle:{
                             border: 'none',
                             backgroundColor: 'white',
-                            display: 'contents',
-                            innerStyle:{
-                                top: '-100px'
-                            }
+                            display: 'contents'
+                        },
+                        footerInnerStyle:{
+                            top: '-110px'
                         },
                         footerElements:[
                             {
