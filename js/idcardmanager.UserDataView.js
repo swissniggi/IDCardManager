@@ -55,7 +55,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         html += ' <span class="label">'+ dataRow['employeeId'] + '</span>';
         html += '</div>';
         
-        html += '<img src="' + dataRow['imgPath'] + '" alt="Kein Bild gefunden."></img>';
+        html += '<img class="portrait" src="' + dataRow['imgPath'] + '" alt="Kein Bild gefunden."></img>';
 
         return new kijs.gui.DataViewElement({
             dataRow: dataRow,
