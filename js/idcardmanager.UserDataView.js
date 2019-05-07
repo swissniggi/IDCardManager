@@ -77,8 +77,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
             innerStyle:{
                 padding: '10px',
                 overflowY: 'auto',
-                flex: 'initial',
-                width: '180px'
+                flex: 'initial'
             }
         };
 

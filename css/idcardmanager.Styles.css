@@ -3,9 +3,13 @@ div .kijs-spinbox {
     height: inherit !important;
 }
 
+.kijs-dataview .kijs-dataviewelement{
+    width: 240px;
+}
+
 .kijs-dataview .kijs-dataviewelement .outerdiv{
     display: inline-block;
-    width: 100px;
+    width: 145px;
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
