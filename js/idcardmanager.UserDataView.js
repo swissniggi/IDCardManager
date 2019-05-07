@@ -39,7 +39,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
     createElement(dataRow, index) {
         let html = '';
 
-        html += '<div>';
+        html += '<div class="outerdiv"><div>';
         html += ' <span class="label">'+ dataRow['lastName'] + dataRow['firstName'] + '</span>';
         html += '</div>';
         
@@ -53,7 +53,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         
         html += '<div>';
         html += ' <span class="label">'+ dataRow['employeeId'] + '</span>';
-        html += '</div>';
+        html += '</div></div>';
         
         html += '<img class="portrait" src="' + dataRow['imgPath'] + '" alt="Kein Bild gefunden."></img>';
 
