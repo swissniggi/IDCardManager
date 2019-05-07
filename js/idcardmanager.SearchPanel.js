@@ -55,6 +55,9 @@ idcardmanager.SearchPanel = class idcardmanager_SearchPanel extends kijs.gui.For
 
         }
     }
+    
+    get scope() { return this._scope; }
+    set scope(val) { this._scope = val; }
 
 
     // --------------------------------------------------------------
