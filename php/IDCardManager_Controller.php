@@ -188,7 +188,7 @@ class IDCardManager_Controller {
         if ($sValidDate !== '') {
             // Datum in valides Format umwandeln
             $nTimeBetween1601And1970 = 11644473600;
-            $floatValidSek = floatval(date("U", strtotime($objectFilter->valid)) + $nTimeBetween1601And1970);
+            $floatValidSek = floatval(date("U", strtotime($sValidDate)) + $nTimeBetween1601And1970);
             $floatValidNano = $floatValidSek * 1.E7;       
             $floatValid = sprintf('%.0f',$floatValidNano);
             
