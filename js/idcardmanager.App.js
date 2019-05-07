@@ -172,7 +172,7 @@ idcardmanager.App = class idcardmanager_App {
                             }
                         ],
                         elements:[
-                            //this._userDataView 
+                            this._userDataView 
                         ]
                     }
                 ]
@@ -222,7 +222,7 @@ idcardmanager.App = class idcardmanager_App {
                 employeeId : sEmployeeId,
                 validDate : sValidDate
             };
-            this._UserDataView.load(data);
+            this._userDataView.load(data);
 
             // Suchfelder leeren
             this._viewport.down('name').value = '';
