@@ -143,9 +143,6 @@ idcardmanager.App = class idcardmanager_App {
                             backgroundColor: 'white',
                             display: 'contents'
                         },
-                        footerInnerStyle:{
-                            top: '-110px'
-                        },
                         footerElements:[
                             {
                                 xtype: 'kijs.gui.Button',
