@@ -1,6 +1,7 @@
 div.kijs-spinbox {
     width: inherit !important;
     height: inherit !important;
+    z-index: 100000;
 }
 
 div .kijs-dataview .kijs-dataviewelement{
