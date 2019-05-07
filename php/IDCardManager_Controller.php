@@ -25,7 +25,7 @@ class IDCardManager_Controller {
     // PUBLIC MEMBERS
     // --------------------------------------------------------------
     /**
-     * Analysiert die Requests
+     * Requests analysieren
      */
     public function analizeRequests() {
         $objectRequests = json_decode(file_get_contents("php://input"));
@@ -113,6 +113,11 @@ class IDCardManager_Controller {
         }
     }
     
+    
+    /**
+     * Meldung ins Logfile schreiben
+     * @param string $stringMsg
+     */
     public static function writeLog($stringMsg) {
         $dateNow = date('d.m.Y, H:i:s');
         file_put_contents(self::$sLogpath, $dateNow.' '.$stringMsg."\r\n", FILE_APPEND);
@@ -121,6 +126,12 @@ class IDCardManager_Controller {
     // --------------------------------------------------------------
     // PRIVATE MENBERS
     // --------------------------------------------------------------
+    /**
+     * Personalnummer des Benutzers ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
     private function _getEmployeeId($arrayUserInfo, $intIndex) {
         // Ausweisnummer auslesen
         if (array_key_exists('employeeid', $arrayUserInfo[$intIndex])) {
@@ -131,6 +142,13 @@ class IDCardManager_Controller {
         return utf8_encode($sEmployeeId);
     }
     
+    
+    /**
+     * Vorname des Benutzers ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
     private function _getFirstName($arrayUserInfo, $intIndex) {
         // Vorname auslesen
         if (array_key_exists('givenname', $arrayUserInfo[$intIndex])) {
@@ -141,6 +159,13 @@ class IDCardManager_Controller {
         return utf8_encode($sGivenName);
     }
     
+    
+    /**
+     * Bildpfad ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
     private function _getImgPath($arrayUserInfo, $intIndex) {
         require_once 'PHP/IDCardManager_ImageManipulator.php';
         $sFirstName = $this->_getFirstName($arrayUserInfo, $intIndex);
@@ -174,6 +199,13 @@ class IDCardManager_Controller {
         return utf8_encode($sPicturePath);
     }
     
+    
+    /**
+     * Nachname des Benutzers ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
     private function _getLastName($arrayUserInfo, $intIndex) {
         if (array_key_exists('sn', $arrayUserInfo[$intIndex])) {
             $sLastName = $arrayUserInfo[$intIndex]['sn'][0];
@@ -183,6 +215,12 @@ class IDCardManager_Controller {
         return utf8_encode($sLastName);
     }
     
+    
+    /**
+     * Suchmuster erstellen
+     * @param object $objectFilter
+     * @return string
+     */
     private function _getPattern($objectFilter) {
         $sLastName = utf8_decode($objectFilter->lastName);
         $sFirstName = utf8_decode($objectFilter->firstName);
@@ -217,6 +255,13 @@ class IDCardManager_Controller {
         return $pattern;
     }
     
+    
+    /**
+     * Funktion des Benutzers ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
     private function _getTitle($arrayUserInfo, $intIndex) {
         if (array_key_exists('title', $arrayUserInfo[$intIndex])) {
             $sTitle = $arrayUserInfo[$intIndex]['title'][0];
@@ -226,6 +271,13 @@ class IDCardManager_Controller {
         return utf8_encode($sTitle);
     }
     
+    
+    /**
+     * Active Directory durchsuchen
+     * @param string $sPattern
+     * @return array
+     * @throws Exception
+     */
     private function _getUserInfo($sPattern) {
         $con = ldap_connect($this->arrayLdap->ldapConnection);
         ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
@@ -240,6 +292,13 @@ class IDCardManager_Controller {
         }
     }
     
+    
+    /**
+     * Gültigkeitsdatum ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return date
+     */
     private function _getValidDate($arrayUserInfo, $intIndex) {
         if (array_key_exists('accountexpires', $arrayUserInfo[$intIndex])) {
             if($arrayUserInfo[$intIndex]['accountexpires'][0] !== '0' && $arrayUserInfo[$intIndex]['accountexpires'][0] !== '9223372036854775807') {
@@ -257,6 +316,13 @@ class IDCardManager_Controller {
         return $dateValidDate;
     }
     
+    
+    /**
+     * Benutzer einloggen
+     * @param array $arrayUserData
+     * @return \Throwable|array
+     * @throws Exception
+     */
     private function _loginUser($arrayUserData) {
         try{
             $sUsername = mb_strtolower($arrayUserData->username);
@@ -303,6 +369,12 @@ class IDCardManager_Controller {
         return $arrayReturn;
     }
     
+    
+    /**
+     * Benutzer im ActiveDirectory suchen
+     * @param object $objectFilter
+     * @return \Throwable|array
+     */
     private function _searchADUser($objectFilter) {
         try {
             $sPattern = $this->_getPattern($objectFilter);
@@ -312,6 +384,8 @@ class IDCardManager_Controller {
             $arrayReturnData = [];
             
             for ($i = 0; $i < $arrayUserInfo['count']; $i++) {
+                
+                // System-Benutzer mit mDBUseDefaults = false ausfiltern
                 if ($arrayUserInfo[$i]['mdbusedefaults'][0] === 'TRUE') {
                     $arrayUserResults = array(
                         'lastName' => $this->_getLastName($arrayUserInfo, $i),
