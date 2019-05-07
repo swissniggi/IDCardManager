@@ -70,6 +70,7 @@ idcardmanager.App = class idcardmanager_App {
             },
             headerBarElements:{
                 xtype: 'kijs.gui.Button',
+                name: 'btnLogout',
                 iconChar: '&#xf011',
                 toolTip: 'ausloggen',
                 style:{
