@@ -12,6 +12,7 @@ div .kijs-dataview .kijs-dataviewelement{
 .kijs-dataview .kijs-dataviewelement .outerdiv{
     display: inline-block;
     width: 130px;
+    margin-left: 4px;
 }
 
 .kijs-dataview .kijs-dataviewelement .outerdiv div{
