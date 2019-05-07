@@ -72,7 +72,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             facadeFnSave: 'idcardmanager.updateUserData',
             facadeFnLoad: 'idcardmanager.loadEditorData',
             name: 'editorFormPanel',
-            closeable: true,
+            closable: true,
             defaults:{
                 width: 280,
                 height: 25,
