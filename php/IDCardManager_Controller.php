@@ -312,7 +312,7 @@ class IDCardManager_Controller {
             $arrayReturnData = [];
             
             for ($i = 0; $i < $arrayUserInfo['count']; $i++) {
-                if ($arrayUserInfo[$i]['mdbusedefaults'] === true) {
+                if ($arrayUserInfo[$i]['mdbusedefaults'] === 'true') {
                     $arrayUserResults = array(
                         'lastName' => $this->_getLastName($arrayUserInfo, $i),
                         'firstName' => $this->_getFirstName($arrayUserInfo, $i),
