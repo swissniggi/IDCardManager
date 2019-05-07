@@ -103,7 +103,7 @@ idcardmanager.App = class idcardmanager_App {
                             }
                         },
                         innerStyle:{
-                            height: '0px'
+                            display: 'contents'
                         },                    
                         elements:[
                             {
@@ -159,7 +159,8 @@ idcardmanager.App = class idcardmanager_App {
                                 },
                                 style:{
                                     margin: '0 10px 10px 10px',
-                                    float: 'right'
+                                    float: 'right',
+                                    display: 'contents'
                                 }
                             }
                         ]
