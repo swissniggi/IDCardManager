@@ -130,7 +130,8 @@ idcardmanager.App = class idcardmanager_App {
                                 cls: 'help-icon',
                                 iconChar: '&#xf059',
                                 toolTip: 'Mindestens ein Feld muss ausgefüllt werden.'
-                                        +'<br />Das Zeichen &#x2731; kann bei Name und Vorname als Wildcard eingesetzt werden.',
+                                        +'<br />Das Zeichen &#x2731; kann bei Name und'
+                                        +' Vorname als Wildcard eingesetzt werden.',
                                 style:{
                                     margin: '0 10px 0 10px',
                                     color: '#4398dd'
@@ -169,7 +170,8 @@ idcardmanager.App = class idcardmanager_App {
                                 xtype: 'kijs.gui.Icon',
                                 cls: 'help-icon',
                                 iconChar: '&#xf059',
-                                toolTip: 'Zum bearbeiten der Daten auf den entsprechenden Benutzer doppelklicken.',
+                                toolTip: 'Zum bearbeiten der Daten auf den'
+                                        +' entsprechenden Benutzer doppelklicken.',
                                 style:{
                                     margin: '0 10px 0 10px',
                                     color: '#4398dd'
