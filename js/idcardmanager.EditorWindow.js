@@ -81,26 +81,26 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             },
             elements:[
                 {
-                    xtype: kijs.gui.field.Text,
+                    xtype: 'kijs.gui.field.Text',
                     labelWidth: 90,
                     label: 'Vorname, Name',
                     name: 'name',
                     required: true
                 },{
-                    xtype: kijs.gui.field.Text,
+                    xtype: 'kijs.gui.field.Text',
                     labelWidth: 90,
                     label: 'Funktion',
                     name: 'title',
                     required: true
                 },{
-                    xtype: kijs.gui.field.DateTime,
+                    xtype: 'kijs.gui.field.DateTime',
                     labelWidth: 90,
                     label: 'Gültig bis:',
                     name: 'valid',
                     required: true,
                     hasTime: false
                 },{
-                    xtype: kijs.gui.field.Number,
+                    xtype: 'kijs.gui.field.Number',
                     labelWidth: 90,
                     label: 'Ausweisnummer',
                     name: 'employeeId',
@@ -113,7 +113,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             },
             footerElements:[
                 {
-                    xtype: kijs.gui.Button,
+                    xtype: 'kijs.gui.Button',
                     caption: 'Speichern',
                     name: 'btnSave',
                     isDefault: true,
