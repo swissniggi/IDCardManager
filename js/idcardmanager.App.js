@@ -101,7 +101,10 @@ idcardmanager.App = class idcardmanager_App {
                             style:{
                                 margin: '10px'
                             }
-                        },                       
+                        },
+                        innerStyle:{
+                            height: '0px'
+                        },                    
                         elements:[
                             {
                                 xtype: 'kijs.gui.field.Text',
@@ -138,6 +141,10 @@ idcardmanager.App = class idcardmanager_App {
                                 }
                             }
                         ],
+                        footerStyle:{
+                            border: 'none',
+                            backgroundColor: 'white'
+                        },
                         footerElements:[
                             {
                                 xtype: 'kijs.gui.Button',
