@@ -139,7 +139,7 @@ class IDCardManager_Controller {
                 $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
-                self::writeLog('Datei '.$this->arrayLdap->picturepath.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
+                self::writeLog('Datei '.$this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
                 $sPicturePath = 'img/noimg.png';
             }
         } else {
