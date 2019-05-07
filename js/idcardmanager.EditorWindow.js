@@ -53,7 +53,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
         const config = {
             caption: 'Editor',
             iconChar: '&#xf044',
-            width: 300,
+            width: 320,
             closable: true,
             maximizable: false,
             resizable: false,
@@ -72,7 +72,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             facadeFnLoad: 'idcardmanager.loadEditorData',
             name: 'editorFormPanel',
             defaults:{
-                width: 280,
+                width: 300,
                 height: 25,
                 style:{
                     margin: '10px'
@@ -81,27 +81,27 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             elements:[
                 {
                     xtype: 'kijs.gui.field.Text',
-                    labelWidth: 90,
+                    labelWidth: 100,
                     label: 'Vorname, Name',
                     name: 'name',
                     required: true,
                     disabled: true
                 },{
                     xtype: 'kijs.gui.field.Text',
-                    labelWidth: 90,
+                    labelWidth: 100,
                     label: 'Funktion',
                     name: 'title',
                     required: true
                 },{
                     xtype: 'kijs.gui.field.DateTime',
-                    labelWidth: 90,
+                    labelWidth: 100,
                     label: 'Gültig bis:',
                     name: 'valid',
                     required: true,
                     hasTime: false
                 },{
                     xtype: 'kijs.gui.field.Number',
-                    labelWidth: 90,
+                    labelWidth: 100,
                     label: 'Ausweisnr.',
                     name: 'employeeId',
                     required: true,
