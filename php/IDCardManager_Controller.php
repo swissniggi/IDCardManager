@@ -45,7 +45,21 @@ class IDCardManager_Controller {
                             $objectResponse->responseData = ['username' => $this->sUsername ?? false];
                             break;
                         
-                        case 'idcardmanager.loadEditorData':
+                        case 'idcardmanager.loadEditorData':                            
+                            $arrayReturn = $this->_searchADUser($objectRequest->requestData);
+                            
+                            if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
+                                $this->_writeLog($arrayReturn->getMessage());
+                                $objectResponse->errorMsg = $arrayReturn->getMessage();
+                            } else {
+                                $objectResponse->responseData = new stdClass();
+                                $objectResponse->responseData->formData = array(
+                                    'name' => $arrayReturn[0]['firstName'] . ' ' . $arrayReturn[0]['lastName'],
+                                    'title' => $arrayReturn[0]['title'] !== '--' ? $arrayReturn[0]['title'] : '',
+                                    'valid' => $arrayReturn[0]['validDate'] !== '--' ? $arrayReturn[0]['validDate'] : '',
+                                    'employeeId' => $arrayReturn[0]['employeeId'] !== '--' ? $arrayReturn[0]['employeeId'] : ''                                                                   
+                                );
+                            }
                             break;
                         
                         case 'idcardmanager.loginUser':
