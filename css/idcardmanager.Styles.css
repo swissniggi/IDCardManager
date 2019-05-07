@@ -2,3 +2,10 @@ div.kijs-spinbox {
     width: inherit !important;
     height: inherit !important;
 }
+
+.kijs-dataview .kijs-dataviewelement .portrait{
+    height: 90px;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: top;  
+}
