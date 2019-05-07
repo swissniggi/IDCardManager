@@ -13,7 +13,8 @@ div .kijs-dataview .kijs-dataviewelement{
 }
 
 .kijs-dataview .kijs-dataviewelement .outerdiv div{
-    margin: 2px 0 2px 0;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
