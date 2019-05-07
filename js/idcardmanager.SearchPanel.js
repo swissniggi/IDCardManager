@@ -14,10 +14,8 @@ idcardmanager.SearchPanel = class idcardmanager_SearchPanel extends kijs.gui.For
         
         this._scope = null;
 
-        // Standard-config-Eigenschaften mergen
-        Object.assign(this._defaultConfig, {
-            // keine
-        });
+        // Config generieren
+        config = Object.assign({}, this._createConfig(), config);
 
         // Mapping für die Zuweisung der Config-Eigenschaften
         Object.assign(this._configMap, {
