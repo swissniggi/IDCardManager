@@ -316,7 +316,7 @@ class IDCardManager_Controller {
                     'lastName' => $this->_getLastName($arrayUserInfo, $i),
                     'firstName' => $this->_getFirstName($arrayUserInfo, $i),
                     'title' => $this->_getTitle($arrayUserInfo, $i),
-                    'valid' => $this->_getValidDate($arrayUserInfo, $i),
+                    'validDate' => $this->_getValidDate($arrayUserInfo, $i),
                     'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
                     'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
                 );

@@ -48,7 +48,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         html += '</div>';
         
         html += '<div>';
-        html += ' <span class="label">'+ dataRow['valid'] + '</span>';
+        html += ' <span class="label">'+ dataRow['validDate'] + '</span>';
         html += '</div>';
         
         html += '<div>';
