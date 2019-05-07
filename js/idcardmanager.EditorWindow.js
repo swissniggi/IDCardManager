@@ -142,7 +142,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
     
     // LISTENERS
     _onBtnCancelClick(e) {
-        this.destruct(true);
+        this.close();
     }
     
     _onBtnSaveClick(e) {
