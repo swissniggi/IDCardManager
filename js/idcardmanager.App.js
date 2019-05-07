@@ -93,7 +93,7 @@ idcardmanager.App = class idcardmanager_App {
                 elements: [
                     // LEFT
                     {
-                        xtype: 'kijs.gui.Panel',
+                        xtype: 'kijs.gui.FormPanel',
                         caption: 'Suche',
                         collapsible: 'left',
                         width: 280,
