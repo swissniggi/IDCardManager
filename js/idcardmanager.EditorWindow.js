@@ -114,6 +114,17 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             footerElements:[
                 {
                     xtype: 'kijs.gui.Button',
+                    caption: 'Abbrechen',
+                    name: 'btnCancel',
+                    iconChar: '&#f00d',
+                    width: 100,
+                    height: 30,
+                    on:{
+                        click: this._onBtnCancelClick,
+                        context: this
+                    }
+                },{
+                    xtype: 'kijs.gui.Button',
                     caption: 'Speichern',
                     name: 'btnSave',
                     isDefault: true,
@@ -130,6 +141,10 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
     }
     
     // LISTENERS
+    _onBtnCancelClick(e) {
+        this.destruct(true);
+    }
+    
     _onBtnSaveClick(e) {
         this._formPanel.save();
     }
