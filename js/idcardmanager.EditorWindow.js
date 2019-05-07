@@ -102,7 +102,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                 },{
                     xtype: 'kijs.gui.field.Number',
                     labelWidth: 100,
-                    label: 'Ausweisnr.',
+                    label: 'Personalnr.',
                     name: 'employeeId',
                     required: true,
                     minValue: 0
