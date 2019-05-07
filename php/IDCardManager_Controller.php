@@ -51,6 +51,7 @@ class IDCardManager_Controller {
                         case 'idcardmanager.loginUser':
                             $objectResponse->data = new stdClass();
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
+                            
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
                                 self::writeLog($arrayReturn->getMessage());
                                 if ($arrayReturn->getCode() === 123) {
@@ -72,6 +73,13 @@ class IDCardManager_Controller {
                             break;
                         
                         case 'idcardmanager.searchUsers':
+                            $arrayReturn = $this->_searchADUser($objectRequest->requestData);
+                            
+                            if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
+                                $objectResponse->errorMsg = $arrayReturn->getMessage();
+                            } else {
+                                $objectResponse->responseData->rows = $arrayReturn;
+                            }
                             break;
                         
                         case 'idcardmanager.updateUserData';
@@ -118,8 +126,33 @@ class IDCardManager_Controller {
         return utf8_encode($sGivenName);
     }
     
-    private function _getImgPath($arrayUserInfo, $arrayFilter, $intIndex) {
+    private function _getImgPath($arrayUserInfo, $intIndex) {
+        require_once 'PHP/IDCardManager_ImageManipulator.php';
+        $sFirstName = $this->_getFirstName($arrayUserInfo, $intIndex);
+        $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
+        // Anzeigebild auslesen
+        if (isset($this->arrayLdap->imageFolder) && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
+            if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
+                copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
+                $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
+            } else {
+                // Pfad des Platzhalterbildes übergeben
+                self::writeLog('Datei '.$this->arrayLdap->picturepath.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
+                $sPicturePath = 'img/noimg.png';
+            }
+        } else {
+            if (isset($arrayUserInfo[$intIndex]['thumbnailphoto'])) {
+                $imgString = $arrayUserInfo[$intIndex]['thumbnailphoto'][0];
+                IDCardManager_ImageManipulator::saveImg($sLastName, $sFirstName, $imgString);
+                // Pfad des Bildes ermitteln
+                $sPicturePath = 'userImages/'.$sLastName . '_' . $sFirstName . '.jpg';
+            } else {
+                // Pfad des Platzhalterbildes übergeben
+                $sPicturePath = 'img/noimg.png';
+            }
+        }
+        return utf8_encode($sPicturePath);
     }
     
     private function _getLastName($arrayUserInfo, $intIndex) {
@@ -172,6 +205,20 @@ class IDCardManager_Controller {
             $sTitle = '--';
         }
         return utf8_encode($sTitle);
+    }
+    
+    private function _getUserInfo($sPattern) {
+        $con = ldap_connect($this->arrayLdap->ldapConnection);
+        ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
+        
+        $arrayUserSearchResult = ldap_search($con, $this->arrayLdap->dn, $sPattern);
+        $arrayUserInfo = ldap_get_entries($con, $arrayUserSearchResult);
+        
+        if ($arrayUserInfo['count'] === 0) {
+            throw new Exception('Die Suche lieferte keine Ergebnisse.');
+        } else {
+            return $arrayUserInfo;
+        }
     }
     
     private function _getValidDate($arrayUserInfo, $intIndex) {
@@ -237,8 +284,33 @@ class IDCardManager_Controller {
         return $arrayReturn;
     }
     
-    private function _searchADUser($arrayFilter) {
-        
+    private function _searchADUser($objectFilter) {
+        try {
+            $sPattern = $this->_getPattern($objectFilter);
+            
+            $arrayUserInfo = $this->_getUserInfo($sPattern);
+            
+            $arrayReturnData = [];
+            
+            for ($i = 0; $i < $arrayUserInfo['count']; $i++) {
+                $arrayUserResults = array(
+                    'lastName' => $this->_getLastName($arrayUserInfo, $i),
+                    'firstName' => $this->_getFirstName($arrayUserInfo, $i),
+                    'title' => $this->_getTitle($arrayUserInfo, $i),
+                    'valid' => $this->_getValidDate($arrayUserInfo, $i),
+                    'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
+                    'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
+                );
+                $arrayReturnData[] = $arrayUserResults;                                
+            }           
+            // Array alphabetisch sortieren
+            usort($arrayReturnData, function($a, $b) {
+                return $a['Name'] < $b['Name'] ? -1 : 1;
+            });
+        } catch (Throwable $ex) {
+            $arrayReturnData = $ex;
+        }
+        return $arrayReturnData;
     }
     
     private function _updateADUser($arrayUserData) {

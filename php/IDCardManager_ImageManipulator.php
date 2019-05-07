@@ -1,8 +1,29 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class IDCardManager_ImageManipulator {
+    
+    // --------------------------------------------------------------
+    // PUBLIC MEMBERS
+    // --------------------------------------------------------------
+    public static function saveImage($sLastName, $sFirstName, $sImgString) {
+        $img = imagecreatefromstring($sImgString);
+        
+        if (!is_dir('userImages')) {
+            mkdir('userImages');
+        }
+        
+        imagejpeg($img, 'userImages/'.$sLastName.'_'.$sFirstName.'.jpg');
+        imagedestroy($img);
+    }
+    
+    
+    public static function deleteAllImages() {
+        $arrayAllFiles = scandir('userImages');
+        $arrayImages = array_diff($arrayAllFiles, array('.', '..'));
+        
+        foreach ($arrayImages as $img) {
+            unlink('userImages/'.$img);
+        }
+    }
+}
 

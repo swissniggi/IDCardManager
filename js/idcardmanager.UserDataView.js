@@ -40,7 +40,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         let html = '';
 
         html += '<div>';
-        html += ' <span class="label">'+ dataRow['name'] + '</span>';
+        html += ' <span class="label">'+ dataRow['lastName'] + dataRow['firstName'] + '</span>';
         html += '</div>';
         
         html += '<div>';
