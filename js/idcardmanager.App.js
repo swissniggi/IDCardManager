@@ -166,6 +166,15 @@ idcardmanager.App = class idcardmanager_App {
                         },
                         headerElements:[
                             {
+                                xtype: 'kijs.gui.Icon',
+                                cls: 'help-icon',
+                                iconChar: '&#xf059',
+                                toolTip: 'Zum bearbeiten der Daten auf den entsprechenden Benutzer doppelklicken.',
+                                style:{
+                                    margin: '0 10px 0 10px',
+                                    color: '#4398dd'
+                                }
+                            },{
                                 xtype: 'kijs.gui.Button',
                                 iconChar: '&#xf02f',
                                 toolTip: 'Druckvorlage erstellen',
