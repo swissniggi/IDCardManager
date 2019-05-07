@@ -250,7 +250,7 @@ idcardmanager.App = class idcardmanager_App {
             'firstName': this._userDataView.current._dataRow['firstName'],
             'employeeId': ''
         };
-        this._editWindow._formPanel.load(data);
+        this._editorWindow._formPanel.load(data);
     }
     
     _onLoginWindowAfterSave() {
