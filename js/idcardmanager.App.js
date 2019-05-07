@@ -248,7 +248,8 @@ idcardmanager.App = class idcardmanager_App {
         let data = {
             'lastName': this._userDataView.current._dataRow['lastName'],
             'firstName': this._userDataView.current._dataRow['firstName'],
-            'employeeId': ''
+            'employeeId': '',
+            'validDate': ''
         };
         editorWindow._formPanel.load(data);
     }
