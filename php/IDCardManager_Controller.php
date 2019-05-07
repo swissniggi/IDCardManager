@@ -49,7 +49,6 @@ class IDCardManager_Controller {
                             break;
                         
                         case 'idcardmanager.loginUser':
-                            $objectResponse->data = new stdClass();
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
@@ -79,6 +78,7 @@ class IDCardManager_Controller {
                                 self::writeLog($arrayReturn->getMessage());
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
+                                $objectResponse->responseData = new stdClass();
                                 $objectResponse->responseData->rows = $arrayReturn;
                             }
                             break;
