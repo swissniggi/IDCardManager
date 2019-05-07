@@ -143,7 +143,8 @@ idcardmanager.App = class idcardmanager_App {
                         ],
                         footerStyle:{
                             border: 'none',
-                            backgroundColor: 'white'
+                            backgroundColor: 'white',
+                            display: 'contents'
                         },
                         footerElements:[
                             {
@@ -159,8 +160,7 @@ idcardmanager.App = class idcardmanager_App {
                                 },
                                 style:{
                                     margin: '0 10px 10px 10px',
-                                    float: 'right',
-                                    display: 'contents'
+                                    float: 'right'
                                 }
                             }
                         ]
