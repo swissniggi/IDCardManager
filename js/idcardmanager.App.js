@@ -103,7 +103,7 @@ idcardmanager.App = class idcardmanager_App {
                             }
                         },
                         innerStyle:{
-                            display: 'cnotents'
+                            display: 'contents'
                         },
                         elements:[
                             {
