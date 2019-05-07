@@ -310,7 +310,7 @@ class IDCardManager_Controller {
             }           
             // Array alphabetisch sortieren
             usort($arrayReturnData, function($a, $b) {
-                return $a['Name'] < $b['Name'] ? -1 : 1;
+                return $a['lastName'] < $b['lastName'] ? -1 : 1;
             });
         } catch (Throwable $ex) {
             $arrayReturnData = $ex;
