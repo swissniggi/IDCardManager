@@ -5,10 +5,6 @@ div.kijs-spinbox {
     z-index: 100000;
 }
 
-div.kijs-panel > .kijs-footer > .kijs-container-inner{
-    top: -110px;
-}
-
 div .kijs-dataview .kijs-dataviewelement{
     width: 240px;
 }
