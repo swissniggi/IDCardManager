@@ -132,15 +132,15 @@ class IDCardManager_Controller {
         $sFirstName = $this->_getFirstName($arrayUserInfo, $intIndex);
         $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
-        if (!is_dir(realpath('userImages'))) {
-            mkdir(realpath('userImages'), 0777, true);
+        if (!is_dir('userImages')) {
+            mkdir('userImages', 0777);
         }
         
         // Anzeigebild auslesen
         if (isset($this->arrayLdap->imageFolder) && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
             if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
-                copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', realpath('userImages').'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
-                $sPicturePath = realpath('userImages').'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
+                copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
+                $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 self::writeLog('Datei '.$this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
@@ -151,7 +151,7 @@ class IDCardManager_Controller {
                 $imgString = $arrayUserInfo[$intIndex]['thumbnailphoto'][0];
                 IDCardManager_ImageManipulator::saveImage($sLastName, $sFirstName, $imgString);
                 // Pfad des Bildes ermitteln
-                $sPicturePath = realpath('userImages').'/'.$sLastName . '_' . $sFirstName . '.jpg';
+                $sPicturePath = 'userImages/'.$sLastName . '_' . $sFirstName . '.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 $sPicturePath = 'img/noimg.png';
