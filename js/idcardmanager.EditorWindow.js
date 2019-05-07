@@ -116,7 +116,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                     xtype: 'kijs.gui.Button',
                     caption: 'Abbrechen',
                     name: 'btnCancel',
-                    iconChar: '&#f00d',
+                    iconChar: '&#xf00d',
                     width: 100,
                     height: 30,
                     on:{
