@@ -256,7 +256,7 @@ idcardmanager.App = class idcardmanager_App {
             this._viewport.down('employeeId').value = '';
             this._viewport.down('valid').value = '';
         } else {
-            kijs.gui.MsgBox.alert('Achtung','Mindestens ein Feld muss ausgefüllt werden!');
+            kijs.gui.MsgBox.info('Achtung','Mindestens ein Feld muss ausgefüllt werden!');
         }
     }
     
