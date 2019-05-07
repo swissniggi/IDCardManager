@@ -12,6 +12,10 @@ div .kijs-dataview .kijs-dataviewelement{
     width: 130px;
 }
 
+.kijs-dataview .kijs-dataviewelement .outerdiv .div{
+    margin: 2px 0 2px 0;
+}
+
 .kijs-dataview .kijs-dataviewelement .portrait{
     height: 90px;
     float: right;
