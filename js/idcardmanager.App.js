@@ -136,7 +136,10 @@ idcardmanager.App = class idcardmanager_App {
                                     margin: '0 10px 0 10px',
                                     color: '#4398dd'
                                 }
-                            },{
+                            }
+                        ],
+                        footerElements:[
+                            {
                                 xtype: 'kijs.gui.Button',
                                 name: 'btnSearch',
                                 isDefault: true,
