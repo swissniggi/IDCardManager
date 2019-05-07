@@ -101,7 +101,10 @@ idcardmanager.App = class idcardmanager_App {
                             style:{
                                 margin: '10px'
                             }
-                        },                    
+                        },
+                        innerStyle:{
+                            display: 'cnotents'
+                        },
                         elements:[
                             {
                                 xtype: 'kijs.gui.field.Text',
