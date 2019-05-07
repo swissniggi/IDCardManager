@@ -19,6 +19,9 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         if (kijs.isObject(config)) {
             this.applyConfig(config, true);
         }
+        
+        // Events
+        this.on('elementDblClick', this._onElementDblClick, this);
     }
 
 

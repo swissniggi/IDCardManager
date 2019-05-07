@@ -23,7 +23,11 @@ idcardmanager.App = class idcardmanager_App {
     
     runApp() {
         this._userDataView = new idcardmanager.UserDataView({
-            rpc: this._rpc
+            rpc: this._rpc,
+            on:{
+                elementDblClick: this._onUserDataViewElementDblClick,
+                context: this
+            }
         });
         
         const mainPanel = this.createMainPanel();
@@ -232,6 +236,14 @@ idcardmanager.App = class idcardmanager_App {
         } else {
             kijs.gui.MsgBox.alert('Achtung','Mindestens ein Feld muss ausgefüllt werden!');
 }
+    }
+    
+    _onUserDataViewElementDblClick() {
+        let editorWindow = new idcardmanager.EditorWindow({
+            rpc: this._rpc
+        });
+        
+        editorWindow.show();
     }
     
     _onLoginWindowAfterSave() {
