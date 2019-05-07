@@ -40,7 +40,7 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
         let html = '';
 
         html += '<div class="outerdiv"><div>';
-        html += ' <span class="label">'+ dataRow['lastName'] + dataRow['firstName'] + '</span>';
+        html += ' <span class="label">'+ dataRow['lastName'] + ' ' + dataRow['firstName'] + '</span>';
         html += '</div>';
         
         html += '<div>';
@@ -77,7 +77,8 @@ idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.D
             innerStyle:{
                 padding: '10px',
                 overflowY: 'auto',
-                flex: 'initial'
+                flex: 'initial',
+                width: '180px'
             }
         };
 
