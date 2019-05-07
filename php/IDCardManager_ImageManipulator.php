@@ -8,8 +8,8 @@ class IDCardManager_ImageManipulator {
     public static function saveImage($sLastName, $sFirstName, $sImgString) {
         $img = imagecreatefromstring($sImgString);
         
-        if (!is_dir('userImages')) {
-            mkdir('userImages');
+        if (!is_dir(realpath('userImages'))) {
+            mkdir(realpath('userImages', 0777));
         }
         
         imagejpeg($img, 'userImages/'.$sLastName.'_'.$sFirstName.'.jpg');
