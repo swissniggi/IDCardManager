@@ -72,6 +72,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             facadeFnSave: 'idcardmanager.updateUserData',
             facadeFnLoad: 'idcardmanager.loadEditorData',
             name: 'editorFormPanel',
+            closeable: true,
             defaults:{
                 width: 280,
                 height: 25,
@@ -102,7 +103,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                 },{
                     xtype: 'kijs.gui.field.Number',
                     labelWidth: 90,
-                    label: 'Ausweisnummer',
+                    label: 'Ausweisnr.',
                     name: 'employeeId',
                     required: true,
                     minValue: 0
