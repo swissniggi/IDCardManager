@@ -217,7 +217,7 @@ idcardmanager.App = class idcardmanager_App {
         
         if (sName !== '' || sFirstName !== '' || sEmployeeId !== '' || sValidDate) {
             let data = {
-                name : sName,
+                lastName : sName,
                 firstName : sFirstName,
                 employeeId : sEmployeeId,
                 validDate : sValidDate

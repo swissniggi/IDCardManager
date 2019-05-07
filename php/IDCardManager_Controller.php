@@ -166,10 +166,10 @@ class IDCardManager_Controller {
     }
     
     private function _getPattern($objectFilter) {
-        $sLastName = utf8_decode($objectFilter->name);
+        $sLastName = utf8_decode($objectFilter->lastName);
         $sFirstName = utf8_decode($objectFilter->firstName);
         $sEmployeeId = $objectFilter->employeeId;
-        $sValidDate = $objectFilter->valid;
+        $sValidDate = $objectFilter->validDate;
         
         $pattern = '(&';
         
