@@ -144,7 +144,7 @@ class IDCardManager_Controller {
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 self::writeLog('Datei '.$this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
-                $sPicturePath = 'img/noimg.png';
+                $sPicturePath = 'img/noimg.jpg';
             }
         } else {
             if (isset($arrayUserInfo[$intIndex]['thumbnailphoto'])) {
@@ -154,7 +154,7 @@ class IDCardManager_Controller {
                 $sPicturePath = 'userImages/'.$sLastName . '_' . $sFirstName . '.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
-                $sPicturePath = 'img/noimg.png';
+                $sPicturePath = 'img/noimg.jpg';
             }
         }
         return utf8_encode($sPicturePath);
