@@ -12,7 +12,7 @@ div .kijs-dataview .kijs-dataviewelement{
     width: 130px;
 }
 
-.kijs-dataview .kijs-dataviewelement .outerdiv .div{
+.kijs-dataview .kijs-dataviewelement .outerdiv div{
     margin: 2px 0 2px 0;
 }
 
