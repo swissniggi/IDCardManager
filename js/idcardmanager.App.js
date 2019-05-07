@@ -57,11 +57,6 @@ idcardmanager.App = class idcardmanager_App {
     }
     
     createMainPanel() {
-        let searchPanel = new idcardmanager.SearchPanel({
-            rpc: this._rpc,
-            scope: this
-        });
-        
         return new kijs.gui.Panel({
             name: 'mainPanel',
             caption: 'IDCardManager',
@@ -97,8 +92,7 @@ idcardmanager.App = class idcardmanager_App {
                 },
                 elements: [
                     // LEFT
-                    searchPanel,
-                    /*{
+                    {
                         xtype: 'kijs.gui.FormPanel',
                         caption: 'Suche',
                         collapsible: 'left',
@@ -159,7 +153,7 @@ idcardmanager.App = class idcardmanager_App {
                                 }
                             }
                         ]
-                    },*/{
+                    },{
                         xtype: 'kijs.gui.Splitter',
                         targetPos: 'left'
                     },{
