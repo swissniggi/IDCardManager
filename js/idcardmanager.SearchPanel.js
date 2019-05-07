@@ -106,24 +106,28 @@ idcardmanager.SearchPanel = class idcardmanager_SearchPanel extends kijs.gui.For
                     xtype: 'kijs.gui.field.Text',
                     name: 'name',
                     label: 'Name',
-                    labelWidth: 100
+                    labelWidth: 100,
+                    required: true
                 },{
                     xtype: 'kijs.gui.field.Text',
                     name: 'firstName',
                     label: 'Vorname',
-                    labelWidth: 100
+                    labelWidth: 100,
+                    required: true
                 },{
                     xtype: 'kijs.gui.field.Number',
                     name: 'employeeId',
                     label: 'Personalnr.',
                     labelWidth: 100,
-                    minValue: 0
+                    minValue: 0,
+                    required: true
                 },{
                     xtype: 'kijs.gui.field.DateTime',
                     name: 'valid',
                     label: 'Gültig bis',
                     labelWidth: 100,
-                    hasTime: false
+                    hasTime: false,
+                    required: true
                 },{
                     xtype: 'kijs.gui.Icon',
                     cls: 'help-icon',
