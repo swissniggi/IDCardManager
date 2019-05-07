@@ -133,7 +133,7 @@ class IDCardManager_Controller {
         $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
         if (!is_dir(realpath('userImages'))) {
-            mkdir(realpath('userImages'), 0777);
+            mkdir(realpath('userImages'), 0777, true);
         }
         
         // Anzeigebild auslesen
