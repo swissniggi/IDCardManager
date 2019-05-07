@@ -5,7 +5,7 @@ div.kijs-spinbox {
 
 .kijs-dataview .kijs-dataviewelement .portrait{
     height: 90px;
-    display: inline-block;
+    float: right;
     margin-left: 5px;
     vertical-align: top;  
 }
