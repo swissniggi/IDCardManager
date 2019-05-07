@@ -312,15 +312,17 @@ class IDCardManager_Controller {
             $arrayReturnData = [];
             
             for ($i = 0; $i < $arrayUserInfo['count']; $i++) {
-                $arrayUserResults = array(
-                    'lastName' => $this->_getLastName($arrayUserInfo, $i),
-                    'firstName' => $this->_getFirstName($arrayUserInfo, $i),
-                    'title' => $this->_getTitle($arrayUserInfo, $i),
-                    'validDate' => $this->_getValidDate($arrayUserInfo, $i),
-                    'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
-                    'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
-                );
-                $arrayReturnData[] = $arrayUserResults;                                
+                if ($arrayUserInfo[$i]['mdbusedefaults'] === true) {
+                    $arrayUserResults = array(
+                        'lastName' => $this->_getLastName($arrayUserInfo, $i),
+                        'firstName' => $this->_getFirstName($arrayUserInfo, $i),
+                        'title' => $this->_getTitle($arrayUserInfo, $i),
+                        'validDate' => $this->_getValidDate($arrayUserInfo, $i),
+                        'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
+                        'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
+                    );
+                    $arrayReturnData[] = $arrayUserResults;
+                }
             }           
             // Array alphabetisch sortieren
             usort($arrayReturnData, function($a, $b) {
