@@ -95,7 +95,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                 },{
                     xtype: 'kijs.gui.field.DateTime',
                     labelWidth: 100,
-                    label: 'Gültig bis:',
+                    label: 'Gültig bis',
                     name: 'valid',
                     required: true,
                     hasTime: false
