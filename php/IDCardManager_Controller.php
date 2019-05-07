@@ -76,6 +76,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
+                                self::writeLog($arrayReturn->getMessage());
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
                                 $objectResponse->responseData->rows = $arrayReturn;
