@@ -20,7 +20,6 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
 
          // Mapping für die Zuweisung der Config-Eigenschaften
         Object.assign(this._configMap, {
-            facadeFnSave: { target: 'facadeFnSave', context: this._formPanel },
             rpc: { target: 'rpc', context: this._formPanel }
         });
 
