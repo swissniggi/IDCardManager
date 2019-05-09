@@ -149,13 +149,14 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
         let sEmployeeId = this._formPanel.down('employeeId').value;
         let sValidDate = this._formPanel.down('valid').value;
         
+        let dateValidDate = sValidDate.getDate();
         let dateNow = new Date();
         dateNow.setHours(0,0,0,0);
         
         if (sValidDate !== '' && !sValidDate) {
             kijs.gui.MsgBox.error('Fehler!','Gültigkeitsdatum hat falsches Format!');
             return false;
-        } else if (sValidDate <= dateNow) {
+        } else if (dateValidDate <= dateNow) {
             kijs.gui.MsgBox.error('Fehler!', 'Das Gültigkeitsdatum muss in der Zukunft liegen!');
             return false;
         }
