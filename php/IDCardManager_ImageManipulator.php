@@ -5,6 +5,12 @@ class IDCardManager_ImageManipulator {
     // --------------------------------------------------------------
     // PUBLIC MEMBERS
     // --------------------------------------------------------------
+    /**
+     * String in Bild umwandeln und speichern
+     * @param string $sLastName
+     * @param string $sFirstName
+     * @param string $sImgString
+     */
     public static function saveImage($sLastName, $sFirstName, $sImgString) {
         $img = imagecreatefromstring($sImgString);                       
         imagejpeg($img, 'userImages/'.$sLastName.'_'.$sFirstName.'.jpg');
@@ -12,6 +18,9 @@ class IDCardManager_ImageManipulator {
     }
     
     
+    /**
+     * alle Bilder im temporären Ordner löschen
+     */
     public static function deleteAllImages() {
         $arrayAllFiles = scandir('userImages');
         $arrayImages = array_diff($arrayAllFiles, array('.', '..'));

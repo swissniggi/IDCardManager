@@ -417,6 +417,13 @@ class IDCardManager_Controller {
         return $arrayReturnData;
     }
     
+    
+    /**
+     * Benutzerdaten im AD ändern
+     * @param array $arrayUserData
+     * @return boolean
+     * @throws Exception
+     */
     private function _updateADUser($arrayUserData) {
         $arrayUserName = explode(' ', $arrayUserData->name);
         

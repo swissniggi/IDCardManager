@@ -21,7 +21,10 @@ idcardmanager.App = class idcardmanager_App {
     // --------------------------------------------------------------
     // MEMBERS
     // --------------------------------------------------------------
-    
+    /**
+     * Anwendung starten
+     * @returns {undefined}
+     */
     runApp() {
         this._userDataView = new idcardmanager.UserDataView({
             rpc: this._rpc,
@@ -55,6 +58,10 @@ idcardmanager.App = class idcardmanager_App {
         }, this, false, this._viewport, 'dom', false);
     }
     
+    /**
+     * MainPanel erstellen
+     * @returns {kijs.gui.Panel}
+     */
     createMainPanel() {
         return new kijs.gui.Panel({
             name: 'mainPanel',
@@ -205,6 +212,10 @@ idcardmanager.App = class idcardmanager_App {
         });
     }
     
+    /**
+     * Loginfenster erstellen und öffnen
+     * @returns {undefined}
+     */
     showLoginWindow() {
         this._loginWindow = new idcardmanager.LoginWindow({
             rpc: this._rpc,
@@ -217,7 +228,12 @@ idcardmanager.App = class idcardmanager_App {
         this._loginWindow.show();
     }
     
+    
     //LISTENERS
+    /**
+     * Logout ausführen
+     * @returns {undefined}
+     */
     _onBtnLogoutClick() {
         sessionStorage.clear();
         this._rpc.do('idcardmanager.logoutUser', null, 
@@ -234,6 +250,10 @@ idcardmanager.App = class idcardmanager_App {
         
     }
     
+    /**
+     * Suche ausführen
+     * @returns {Boolean}
+     */
     _onBtnSearchClick() {
         let sName = this._viewport.down('name').value;
         let sFirstName = this._viewport.down('firstName').value;
@@ -275,6 +295,11 @@ idcardmanager.App = class idcardmanager_App {
         }
     }
     
+    /**
+     * userDataView laden und Editorfenster schliessen
+     * @param {Event} e
+     * @returns {undefined}
+     */
     _onEditWindowAfterSave(e) {
         // Suchergebnisse neu laden
         let data = {
@@ -292,9 +317,13 @@ idcardmanager.App = class idcardmanager_App {
         sessionStorage.removeItem('validDate');
         
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
-        this._editorWindow.destruct();
+        this._editorWindow.close();
     }
     
+    /**
+     * Editorfenster öffnen
+     * @returns {undefined}
+     */
     _onUserDataViewElementDblClick() {
         this._editorWindow = new idcardmanager.EditorWindow({
             rpc: this._rpc,
@@ -316,6 +345,11 @@ idcardmanager.App = class idcardmanager_App {
         this._editorWindow._formPanel.load(data);
     }
     
+    /**
+     * Hauptansicht rendern und Benutzername neben Logoutbutton anzeigen
+     * Loginfenster schliessen
+     * @returns {undefined}
+     */
     _onLoginWindowAfterSave() {
         let sUsername = this._loginWindow.down('username').value;
         sessionStorage.setItem('Benutzer', sUsername);
@@ -324,6 +358,6 @@ idcardmanager.App = class idcardmanager_App {
         this._viewport.render();
         let sCaption = 'angemeldet als ' + sUsername + '&nbsp;';
         this._viewport.down('mainPanel').headerBar.containerRightEl.down('btnLogout').caption = sCaption; 
-        this._loginWindow.destruct();
+        this._loginWindow.close();
     }
 };
