@@ -156,7 +156,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
             kijs.gui.MsgBox.error('Fehler!','Gültigkeitsdatum hat falsches Format!');
             return false;
         } else if (sValidDate <= dateNow) {
-            kijs.gui.MsgBox.error('Fehler!', 'Das gültigkeitsdatum muss in der Zukunft liegen!');
+            kijs.gui.MsgBox.error('Fehler!', 'Das Gültigkeitsdatum muss in der Zukunft liegen!');
             return false;
         }
         
