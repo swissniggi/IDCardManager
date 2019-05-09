@@ -106,6 +106,15 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                     name: 'employeeId',
                     required: true,
                     minValue: 0
+                },{
+                    xtype: 'kijs.gui.Icon',
+                    cls: 'help-icon',
+                    iconChar: '&#xf059',
+                    toolTip: 'Das Gültigkeitsdatum muss in der Zukunft liegen.',
+                    style:{
+                        margin: '0 10px 0 10px',
+                        color: '#4398dd'
+                    }
                 }
             ],
             footerStyle:{
