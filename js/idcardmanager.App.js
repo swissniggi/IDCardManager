@@ -45,8 +45,6 @@ idcardmanager.App = class idcardmanager_App {
         this._rpc.do('idcardmanager.checkLogin', null, 
         function(response) {
             if (response.username !== false) {
-                sessionStorage.setItem('Benutzer', response.username);
-
                 // Caption des Logout-Buttons setzen
                 this._viewport.render();
                 let sCaption = 'angemeldet als ' + sessionStorage.getItem('Benutzer') + '&nbsp;';
@@ -260,6 +258,9 @@ idcardmanager.App = class idcardmanager_App {
                 validDate : sValidDate
             };
             this._userDataView.load(data);
+            
+            // Suchparameter in Session speichern
+            sessionStorage.setItem('Suche', data);
 
             // Suchfelder leeren
             this._viewport.down('name').value = '';
@@ -272,6 +273,8 @@ idcardmanager.App = class idcardmanager_App {
     }
     
     _onEditWindowAfterSave(e) {
+        // Suchergebnisse neu laden
+        this._userDataView.load(sessionStorage.getItem('Suche'));
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
         this._editorWindow.destruct();
     }
@@ -284,7 +287,7 @@ idcardmanager.App = class idcardmanager_App {
                 context: this
             }
         });
-        
+        // Editor öffnen
         this._editorWindow.show();
         
         let data = {
@@ -293,6 +296,7 @@ idcardmanager.App = class idcardmanager_App {
             'employeeId': '',
             'validDate': ''
         };
+        // Daten in Formular laden
         this._editorWindow._formPanel.load(data);
     }
     
