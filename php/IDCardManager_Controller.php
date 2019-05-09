@@ -420,7 +420,7 @@ class IDCardManager_Controller {
     private function _updateADUser($arrayUserData) {
         $arrayUserName = explode(' ', $arrayUserData->name);
         
-        $floatValidSek = floatval(date("U", strtotime($arrayUserData->validity)) + 11644473600);
+        $floatValidSek = floatval(date("U", strtotime($arrayUserData->valid)) + 11644473600);
         $floatValidNano = $floatValidSek * 1.E7;
         $floatValid = sprintf('%.0f',$floatValidNano);
         
