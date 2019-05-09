@@ -11,16 +11,21 @@ div .kijs-dataview .kijs-dataviewelement{
 
 .kijs-dataview .kijs-dataviewelement .outerdiv{
     display: inline-block;
-    width: 130px;
+    width: 210px;
     margin-left: 4px;
 }
 
-.kijs-dataview .kijs-dataviewelement .outerdiv div{
+.kijs-dataview .kijs-dataviewelement .label{
+    font-size: 12px;
+    font-weight: bold;
+}
 
+.kijs-dataview .kijs-dataviewelement .value{
+    font-size: 12px;
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
-    height: 90px;
+    height: 120px;
     float: right;
     margin-left: 5px;
     vertical-align: top;  
