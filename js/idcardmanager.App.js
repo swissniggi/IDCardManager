@@ -241,7 +241,7 @@ idcardmanager.App = class idcardmanager_App {
         let sEmployeeId = this._viewport.down('employeeId').value;
         let sValidDate = this._viewport.down('valid').value;
         
-        if (sValidDate !== '' && !sValidDate instanceof Date) {
+        if (sValidDate !== '' && !sValidDate) {
             kijs.gui.MsgBox.error('Fehler!','Gültigkeitsdatum hat falsches Format!');
         } else if (sEmployeeId !== '' && isNaN(sEmployeeId)) {
             kijs.gui.MsgBox.error('Fehler!','Personalnummer muss eine Zahl sein!');
