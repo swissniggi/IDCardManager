@@ -5,16 +5,17 @@ idcardmanager.App = class idcardmanager_App {
 
     constructor(config={}) {
        
-            this._loginWindow = null;
-            this._userDataView = null;
-            this._viewport = null;
+        this._editorWindow = null,
+        this._loginWindow = null;
+        this._userDataView = null;
+        this._viewport = null;
 
-            // RPC-Instanz
-            var rpcConfig = {};
-            if (config.ajaxUrl) {
-                rpcConfig.url = config.ajaxUrl;
-            }
-            this._rpc = new kijs.gui.Rpc(rpcConfig);
+        // RPC-Instanz
+        var rpcConfig = {};
+        if (config.ajaxUrl) {
+            rpcConfig.url = config.ajaxUrl;
+        }
+        this._rpc = new kijs.gui.Rpc(rpcConfig);
     }
     
     // --------------------------------------------------------------
@@ -272,19 +273,19 @@ idcardmanager.App = class idcardmanager_App {
     
     _onEditWindowAfterSave(e) {
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
-        this.destruct();
+        this._editorWindow.destruct();
     }
     
     _onUserDataViewElementDblClick() {
-        let editorWindow = new idcardmanager.EditorWindow({
+        this._editorWindow = new idcardmanager.EditorWindow({
             rpc: this._rpc,
             on:{
                 afterSave: this._onEditWindowAfterSave,
-                context: editorWindow
+                context: this
             }
         });
         
-        editorWindow.show();
+        this._editorWindow.show();
         
         let data = {
             'lastName': this._userDataView.current._dataRow['lastName'],
@@ -292,7 +293,7 @@ idcardmanager.App = class idcardmanager_App {
             'employeeId': '',
             'validDate': ''
         };
-        editorWindow._formPanel.load(data);
+        this._editorWindow._formPanel.load(data);
     }
     
     _onLoginWindowAfterSave() {
