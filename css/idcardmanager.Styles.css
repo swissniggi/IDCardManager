@@ -1,3 +1,8 @@
+.kijs-button .kijs-caption{
+    font-size: 14px;
+    font-weight: bold;
+}
+
 div.kijs-spinbox {
     width: inherit !important;
     min-width: inherit !important;
