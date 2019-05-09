@@ -444,7 +444,11 @@ class IDCardManager_Controller {
         if (!$boolReplaceSuccessful) {
             throw new Exception('Fehler beim Ändern der Benutzerdaten!');
         }
-        
+        self::writeLog(
+                'Der Benutzer '.$this->sUsername.
+                ' hat die Daten von '.$firstName.' '.
+                $lastName.' erfolreich bearbeitet.'
+                );
         return true;
     }
 }
