@@ -6,7 +6,7 @@ div.kijs-spinbox {
 }
 
 div .kijs-dataview .kijs-dataviewelement{
-    width: 240px;
+    width: 350px;
 }
 
 .kijs-dataview .kijs-dataviewelement .outerdiv{
@@ -16,8 +16,7 @@ div .kijs-dataview .kijs-dataviewelement{
 }
 
 .kijs-dataview .kijs-dataviewelement .outerdiv div{
-    font-size: 16px;
-    font-weight: bold;
+
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
