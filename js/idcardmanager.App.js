@@ -260,7 +260,10 @@ idcardmanager.App = class idcardmanager_App {
             this._userDataView.load(data);
             
             // Suchparameter in Session speichern
-            sessionStorage.setItem('Suche', data);
+            sessionStorage.setItem('lastName', sName);
+            sessionStorage.setItem('firstName', sFirstName);
+            sessionStorage.setItem('employeeId', sEmployeeId);
+            sessionStorage.setItem('validDate', sValidDate)
 
             // Suchfelder leeren
             this._viewport.down('name').value = '';
@@ -274,7 +277,14 @@ idcardmanager.App = class idcardmanager_App {
     
     _onEditWindowAfterSave(e) {
         // Suchergebnisse neu laden
-        this._userDataView.load(sessionStorage.getItem('Suche'));
+        let data = {
+            lastName : sessionStorage.getItem('lastName'),
+            firstName : sessionStorage.getItem('firstName'),
+            employeeId : sessionStorage.getItem('employeeId'),
+            validDate : sessionStorage.getItem('validDate')
+        };
+        this._userDataView.load(data);
+        
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
         this._editorWindow.destruct();
     }
