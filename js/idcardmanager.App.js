@@ -3,6 +3,9 @@
 
 idcardmanager.App = class idcardmanager_App { 
 
+    // --------------------------------------------------------------
+    // CONSTRUCTOR
+    // --------------------------------------------------------------
     constructor(config={}) {
        
         this._editorWindow = null,

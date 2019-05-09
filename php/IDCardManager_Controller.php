@@ -4,6 +4,7 @@ class IDCardManager_Controller {
     protected $arrayLdap = [];
     protected $sUsername = null;
     protected static $sLogpath = 'C:/logs/changelog.txt';
+    
     // --------------------------------------------------------------
     // CONSTRUCTOR
     // --------------------------------------------------------------
@@ -45,6 +46,7 @@ class IDCardManager_Controller {
                             $objectResponse->responseData = ['username' => $this->sUsername ?? false];
                             break;
                         
+                        // Daten in Editor laden
                         case 'idcardmanager.loadEditorData':                            
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
@@ -62,6 +64,7 @@ class IDCardManager_Controller {
                             }
                             break;
                         
+                        // Login ausführen
                         case 'idcardmanager.loginUser':
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
                             
@@ -81,10 +84,12 @@ class IDCardManager_Controller {
                             }
                             break;
                         
+                        // Logout ausführen
                         case 'idcardmanager.logoutUser':
                             session_destroy();
                             break;
                         
+                        // Benutzersuche ausführen
                         case 'idcardmanager.searchUsers':
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
@@ -97,6 +102,7 @@ class IDCardManager_Controller {
                             }
                             break;
                         
+                        // Benutzerdaten bearbeiten
                         case 'idcardmanager.updateUserData';
                             $arrayReturn = $this->_updateADUser($objectRequest->requestData->formData);
                             
@@ -180,6 +186,7 @@ class IDCardManager_Controller {
         $sFirstName = $this->_getFirstName($arrayUserInfo, $intIndex);
         $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
+        // temporären Ordner gegebenenfalls erstellen
         if (!is_dir('userImages')) {
             mkdir('userImages', 0777);
         }
@@ -187,6 +194,7 @@ class IDCardManager_Controller {
         // Anzeigebild auslesen
         if (isset($this->arrayLdap->imageFolder) && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
             if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
+                // Portrait vom Bildordner in temporären Ordner kopieren
                 copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
                 $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
@@ -251,7 +259,7 @@ class IDCardManager_Controller {
         }
         
         if ($sValidDate !== '') {
-            // Datum in valides Format umwandeln
+            // Gültigkeitsdatum in valides Format umwandeln
             $nTimeBetween1601And1970 = 11644473600;
             $floatValidSek = floatval(date("U", strtotime($sValidDate)) + $nTimeBetween1601And1970);
             $floatValidNano = $floatValidSek * 1.E7;       
@@ -291,6 +299,7 @@ class IDCardManager_Controller {
         $con = ldap_connect($this->arrayLdap->ldapConnection);
         ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
         
+        // Active Directory durchsuchen
         $arrayUserSearchResult = ldap_search($con, $this->arrayLdap->dn, $sPattern);
         $arrayUserInfo = ldap_get_entries($con, $arrayUserSearchResult);
         
@@ -311,6 +320,7 @@ class IDCardManager_Controller {
     private function _getValidDate($arrayUserInfo, $intIndex) {
         if (array_key_exists('accountexpires', $arrayUserInfo[$intIndex])) {
             if($arrayUserInfo[$intIndex]['accountexpires'][0] !== '0' && $arrayUserInfo[$intIndex]['accountexpires'][0] !== '9223372036854775807') {
+                // Datum aus Wert von Active Directory ermitteln
                 $floatAccExp = floatval($arrayUserInfo[$intIndex]['accountexpires'][0]);
                 $floatDate = $floatAccExp/1.E7-11644473600;
                 $intDate = intval($floatDate);
@@ -360,6 +370,8 @@ class IDCardManager_Controller {
             $sCommonName = $arrayUserInfo[0]['cn'][0];
             
             $boolIsMember = false;
+            
+            // Gruppe nach dem Benutzer durchsuchen
             foreach ($arrayGroupInfo[0]['member'] as $sMember) {
                 if (mb_strpos($sMember, $sCommonName) !== false) {
                     $boolIsMember = true;
@@ -427,6 +439,7 @@ class IDCardManager_Controller {
     private function _updateADUser($arrayUserData) {
         $arrayUserName = explode(' ', $arrayUserData->name);
         
+        // Gültigkeitsdatum in korrektes Format umwandeln
         $floatValidSek = floatval(date("U", strtotime($arrayUserData->valid)) + 11644473600);
         $floatValidNano = $floatValidSek * 1.E7;
         $floatValid = sprintf('%.0f',$floatValidNano);
@@ -440,17 +453,20 @@ class IDCardManager_Controller {
         $con = ldap_connect($this->arrayLdap->ldapConnection);
         ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
         
+        // Benutzer auslesen
         $firstName = utf8_decode($arrayUserName[0]);
         $lastName = utf8_decode($arrayUserName[1]);
         $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, '(&(givenName='.$firstName.')(sn='.$lastName.'))');
         $arrayFirstEntry = ldap_first_entry($con, $arrayUserInfo);
         
+        // Daten ersetzen
         $sUserDn = ldap_get_dn($con, $arrayFirstEntry);
         $boolReplaceSuccessful = ldap_mod_replace($con, $sUserDn, $arrayNewUserData);
         
         if (!$boolReplaceSuccessful) {
             throw new Exception('Fehler beim Ändern der Benutzerdaten!');
         }
+        // Notieren, wer welchen Benutzer bearbeitet hat
         self::writeLog(
                 'Der Benutzer '.$this->sUsername.
                 ' hat die Daten von '.$firstName.' '.
