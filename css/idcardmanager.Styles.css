@@ -15,13 +15,17 @@ div .kijs-dataview .kijs-dataviewelement{
     margin-left: 4px;
 }
 
+.kijs-dataview .kijs-dataviewelement .outerdiv div{
+    margin-top: 2px;
+}
+
 .kijs-dataview .kijs-dataviewelement .label{
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
 }
 
 .kijs-dataview .kijs-dataviewelement .value{
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
