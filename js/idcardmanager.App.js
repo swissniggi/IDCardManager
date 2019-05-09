@@ -270,9 +270,18 @@ idcardmanager.App = class idcardmanager_App {
         }
     }
     
+    _onEditWindowAfterSave(e) {
+        kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
+        this.destruct();
+    }
+    
     _onUserDataViewElementDblClick() {
         let editorWindow = new idcardmanager.EditorWindow({
-            rpc: this._rpc
+            rpc: this._rpc,
+            on:{
+                afterSave: this._onEditWindowAfterSave,
+                context: editorWindow
+            }
         });
         
         editorWindow.show();
