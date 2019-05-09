@@ -241,7 +241,11 @@ idcardmanager.App = class idcardmanager_App {
         let sEmployeeId = this._viewport.down('employeeId').value;
         let sValidDate = this._viewport.down('valid').value;
         
-        if (sName !== '' || sFirstName !== '' || sEmployeeId !== '' || sValidDate) {
+        if (sValidDate !== '' && !sValidDate instanceof Date) {
+            kijs.gui.MsgBox.error('Fehler!','Geben Sie ein gültiges Datum ein!');
+        } else if (sEmployeeId !== '' && isNaN(sEmployeeId)) {
+            kijs.gui.MsgBox.error('Fehler!','Geben Sie eine ganze Zahl als Personalnummer ein!');
+        } else if (sName !== '' || sFirstName !== '' || sEmployeeId !== '' || sValidDate) {
             let data = {
                 lastName : sName,
                 firstName : sFirstName,
