@@ -285,6 +285,12 @@ idcardmanager.App = class idcardmanager_App {
         };
         this._userDataView.load(data);
         
+        // Suchparameter aus SessionStorage löschen
+        sessionStorage.removeItem('lastName');
+        sessionStorage.removeItem('firstName');
+        sessionStorage.removeItem('employeeId');
+        sessionStorage.removeItem('validDate');
+        
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
         this._editorWindow.destruct();
     }
