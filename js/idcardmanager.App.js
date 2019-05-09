@@ -263,7 +263,7 @@ idcardmanager.App = class idcardmanager_App {
             sessionStorage.setItem('lastName', sName);
             sessionStorage.setItem('firstName', sFirstName);
             sessionStorage.setItem('employeeId', sEmployeeId);
-            sessionStorage.setItem('validDate', sValidDate)
+            sessionStorage.setItem('validDate', sValidDate);
 
             // Suchfelder leeren
             this._viewport.down('name').value = '';
