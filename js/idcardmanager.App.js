@@ -158,7 +158,6 @@ idcardmanager.App = class idcardmanager_App {
                                 name: 'btnSearch',
                                 isDefault: true,
                                 iconChar: '&#xf002',
-                                width: 100,
                                 height: 30,
                                 caption: 'Suchen',
                                 on:{

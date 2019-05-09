@@ -102,7 +102,6 @@ idcardmanager.LoginWindow = class idcardmanager_LoginWindow extends kijs.gui.Win
                     name: 'btnLogin',
                     isDefault: true,
                     iconChar: '&#xf00c',
-                    width: 100,
                     height: 30,
                     on:{
                         click: this._onBtnLoginClick,
