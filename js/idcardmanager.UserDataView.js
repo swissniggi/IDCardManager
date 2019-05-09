@@ -1,8 +1,10 @@
-/* global kijs, this */
+
+/* global this, kijs, idcardmanager */
 
 // --------------------------------------------------------------
 // idcarmanager.UserDataView
 // --------------------------------------------------------------
+
 idcardmanager.UserDataView = class idcardmanager_UserDataView extends kijs.gui.DataView {
 
 

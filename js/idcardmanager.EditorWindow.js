@@ -49,6 +49,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
     // --------------------------------------------------------------
     // PROTECTED
     _createConfig() {
+        // Konfiguration erstellen
         this._formPanel = this._createFormPanel();
         const config = {
             caption: 'Editor',
@@ -67,6 +68,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
     }
     
     _createFormPanel() {
+        // FormPanel konfigurieren
         return new kijs.gui.FormPanel({
             facadeFnSave: 'idcardmanager.updateUserData',
             facadeFnLoad: 'idcardmanager.loadEditorData',

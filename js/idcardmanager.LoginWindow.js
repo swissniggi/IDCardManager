@@ -50,6 +50,7 @@ idcardmanager.LoginWindow = class idcardmanager_LoginWindow extends kijs.gui.Win
     // --------------------------------------------------------------
     // PROTECTED
     _createConfig() {
+        // Konfiguration erstellen
         this._formPanel = this._createFormPanel();
         const config = {
             caption: 'Login',
@@ -68,6 +69,7 @@ idcardmanager.LoginWindow = class idcardmanager_LoginWindow extends kijs.gui.Win
     }
     
     _createFormPanel() {
+        // FormPanel konfigurieren
         return new kijs.gui.FormPanel({
             name: 'loginFormPanel',
             defaults:{

@@ -1,5 +1,5 @@
 
-/* global kijs, idcardmanager */
+/* global this, kijs, idcardmanager */
 
 idcardmanager.App = class idcardmanager_App { 
 
