@@ -425,9 +425,9 @@ class IDCardManager_Controller {
         $floatValid = sprintf('%.0f',$floatValidNano);
         
         $arrayNewUserData = array(
-            'employeeid' => $arrayUserData->userid,
+            'employeeid' => $arrayUserData->employeeId,
             'accountexpires' => $floatValid,
-            'title' => utf8_decode($arrayUserData->position)
+            'title' => utf8_decode($arrayUserData->title)
         );
         
         $con = ldap_connect($this->arrayLdap->ldapConnection);
