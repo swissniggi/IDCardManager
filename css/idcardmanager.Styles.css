@@ -1,4 +1,4 @@
-.kijs-button .kijs-caption{
+button.kijs-button > .kijs-caption{
     font-size: 14px;
     font-weight: bold;
 }
