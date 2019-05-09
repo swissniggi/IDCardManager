@@ -146,6 +146,18 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
     }
     
     _onBtnSaveClick(e) {
+        let sEmployeeId = this._formPanel.down('employeeId').value;
+        let sValidDate = this._formPanel.down('valid').value;
+        
+        if (sValidDate !== '' && !sValidDate) {
+            kijs.gui.MsgBox.error('Fehler!','Gültigkeitsdatum hat falsches Format!');
+            return false;
+        }
+        
+        if (sEmployeeId !== '' && isNaN(sEmployeeId)) {
+            kijs.gui.MsgBox.error('Fehler!','Personalnummer muss eine Zahl sein!');
+            return false;
+        }
         this._formPanel.save();
     }
 
