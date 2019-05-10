@@ -1,8 +1,49 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+session_start();
+require 'kireport/kireport_PDF.php';
+require 'php/IDCardManager_Controller.php';
 
+$arrayDataRows = [];
+$arrayPrintedUsers = [];
+
+try {
+    // Get-Parameter auslesen
+    $arrayGetData = filter_input_array(INPUT_GET);
+
+    // Array mit den Benutzerdaten füllen
+    for ($i = 0; $i < count($arrayGetData)/6; $i++) {
+        $arrayDataRows[$i]['lastName'] = $arrayGetData['lastName'+$i];
+        $arrayDataRows[$i]['firstName'] = $arrayGetData['firstName'+$i];
+        $arrayDataRows[$i]['title'] = $arrayGetData['title'+$i];
+        $arrayDataRows[$i]['validDate'] = $arrayGetData['validDate'+$i];
+        $arrayDataRows[$i]['employeeId'] = $arrayGetData['employeeId'+$i];
+        $arrayDataRows[$i]['imgPath'] = $arrayGetData['imgPath'+$i];
+
+        // Vorname und Name für Logeintrag speichern
+        $arrayPrintedUsers[] = $arrayGetData['firstName'+$i] + ' ' + $arrayGetData['lastName'+$i];
+    }
+
+    // Berichtskonfiguration auslesen
+    $objectReportConfig = json_decode(file_get_contents(realpath('config/report.json')));
+
+    // Dimensionen des Personalausweises übergeben
+    $objectReportConfig->size = array(86.4,54);
+
+    $objectPDF = new kireport_PDF();
+
+    // PDF mit Personalausweisen erstellen
+    $objectPDF->createAcrobat($objectReportConfig, null, $arrayDataRows);
+    
+    // Druckvorgang dokumentieren
+    $sMsg = 'Der Benutzer '.$_SESSION['username'].
+            ' hat die Personalausweise für folgende Benutzer gedruckt: ';
+    foreach ($arrayPrintedUsers as $sPrintedUser) {
+        $sMsg += $sPrintedUser.', ';
+    }
+    IDCardManager_Controller::writeLog($sMsg);
+} catch (Throwable $ex) {
+    $sMsg = 'Fehler beim Drucken der Personalausweise! '.$ex->getMessage();
+    IDCardManager_Controller::writeLog($sMsg);
+    header('Location: template/error500.html');
+}
