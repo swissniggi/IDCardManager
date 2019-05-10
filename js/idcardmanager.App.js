@@ -266,6 +266,7 @@ idcardmanager.App = class idcardmanager_App {
                 
                 for (var cell in row) {
                     if (row[cell] === '') {
+                        // Fehlermeldung und Abbruch bei unvollständigen Daten
                         kijs.gui.MsgBox.error(
                                 'Fehler!', 
                                 'Die Daten eines ausgewählten Benutzers sind unvollständig!'
