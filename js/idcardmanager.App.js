@@ -269,7 +269,7 @@ idcardmanager.App = class idcardmanager_App {
                 let row = arraySelectedUsers[i].dataRow;
                 
                 for (var cell in row) {
-                    if (row[cell] === '') {
+                    if (row[cell] === '--') {
                         // Fehlermeldung und Abbruch bei unvollständigen Daten
                         kijs.gui.MsgBox.error(
                                 'Fehler!', 
