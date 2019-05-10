@@ -7,8 +7,8 @@
  * You can set the alpha channel from 0 (fully transparent) to 1 (fully opaque). 
  * It applies to all elements (text, drawings, images).
  */
-require_once(dirname(dirname(__DIR__)) . '/fpdf17/fpdf.php');
-require_once(dirname(dirname(__DIR__)) . '/fpdi/fpdi.php');
+require_once(dirname(dirname(__DIR__)) . '/kireport/pdf/fpdf17/fpdf.php');
+require_once(dirname(dirname(__DIR__)) . '/kireport/pdf/fpdi/fpdi.php');
 
 class kireport_pdf_AlphaPdf extends FPDI {
     protected $_extgstates = array();
