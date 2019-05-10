@@ -65,7 +65,7 @@
                         }
                     },{
                         "fn":"field",
-                        "value":"[validDate]",
+                        "value":"Gültigkeit [validDate]",
                         "x":0,
                         "y":20.3,
                         "style":{
