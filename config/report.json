@@ -26,6 +26,7 @@
                         "style":{
                             "align":"R",
                             "font":{
+                                "style":"B",
                                 "family":"Arial",
                                 "size":9
                             }
