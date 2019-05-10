@@ -192,7 +192,7 @@ class IDCardManager_Controller {
         }
         
         // Anzeigebild auslesen
-        if (isset($this->arrayLdap->imageFolder) && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
+        if ($this->arrayLdap->imageFolder !== '' && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
             if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
                 // Portrait vom Bildordner in temporären Ordner kopieren
                 copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
@@ -346,16 +346,11 @@ class IDCardManager_Controller {
         try{
             $sUsername = mb_strtolower($arrayUserData->username);
             $sPassword = $arrayUserData->password;
+            $sGroupDn = $this->arrayLdap->groupDn;
 
             $con = ldap_connect($this->arrayLdap->ldapConnection);
             $arrayConParts = explode('.',$this->arrayLdap->ldapConnection);
             ldap_bind($con, $arrayConParts[1]."\\".$sUsername, $sPassword);
-
-            if ($this->arrayLdap->groupDn !== '') {
-                $sGroupDn = $this->arrayLdap->groupDn;
-            } else {
-                $sGroupDn = $this->arrayLdap->dn;
-            }
 
             $arrayGroupSearchResult = ldap_search(
                     $con,
