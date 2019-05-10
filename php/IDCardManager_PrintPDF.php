@@ -25,7 +25,7 @@ try {
     }
 
     // Berichtskonfiguration auslesen
-    $objectReportConfig = json_decode(file_get_contents(realpath('config/report.json')));
+    $objectReportConfig = json_decode(file_get_contents(realpath('../config/report.json')));
 
     // Dimensionen des Personalausweises übergeben
     $objectReportConfig->size = array(86.4,54);
@@ -39,7 +39,7 @@ try {
     $sMsg = 'Der Benutzer '.$_SESSION['username'].
             ' hat die Personalausweise für folgende Benutzer gedruckt: ';
     foreach ($arrayPrintedUsers as $sPrintedUser) {
-        $sMsg += $sPrintedUser.', ';
+        $sMsg .= $sPrintedUser.', ';
     }
     IDCardManager_Controller::writeLog($sMsg);
 } catch (Throwable $ex) {
