@@ -262,7 +262,7 @@ idcardmanager.App = class idcardmanager_App {
             let stringUserData = '';
             
             for (var i = 0; i < arraySelectedUsers.length; i++) {
-                let row = arraySelectedUsers[i];
+                let row = arraySelectedUsers[i].dataRow;
                 
                 for (var cell in row) {
                     stringUserData += cell;
