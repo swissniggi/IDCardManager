@@ -97,6 +97,7 @@
                 "value":"SEEBURG • Untere Bönigstrasse 35 • 3800 Interlaken • www.seeburg.ch",
                 "x":0,
                 "y":46.5,
+                "width":80,
                 "style":{
                     "align":"C",
                     "font":{
