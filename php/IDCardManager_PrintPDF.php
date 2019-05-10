@@ -33,7 +33,7 @@ try {
     $objectPDF = new kireport_PDF();
 
     // PDF mit Personalausweisen erstellen
-    $objectPDF->createAcrobat($objectReportConfig, null, $arrayDataRows);
+    $objectPDF->createAcrobat($objectReportConfig, null, $arrayDataRows, 'Personalausweise.pdf');
     
     // Druckvorgang dokumentieren
     $sMsg = 'Der Benutzer '.$_SESSION['username'].
