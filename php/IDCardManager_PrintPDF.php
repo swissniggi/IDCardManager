@@ -18,10 +18,10 @@ try {
         $arrayDataRows[$i]['title'] = $arrayGetData['title'.$i];
         $arrayDataRows[$i]['validDate'] = $arrayGetData['validDate'.$i];
         $arrayDataRows[$i]['employeeId'] = $arrayGetData['employeeId'.$i];
-        $arrayDataRows[$i]['imgPath'] = $arrayGetData['imgPath'.$i];
+        $arrayDataRows[$i]['imgPath'] = '../'.$arrayGetData['imgPath'.$i];
 
         // Vorname und Name für Logeintrag speichern
-        $arrayPrintedUsers[] = $arrayGetData['firstName'.$i] + ' ' + $arrayGetData['lastName'.$i];
+        $arrayPrintedUsers[] = $arrayGetData['firstName'.$i] . ' ' . $arrayGetData['lastName'.$i];
     }
 
     // Berichtskonfiguration auslesen
