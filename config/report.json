@@ -98,6 +98,7 @@
                 "x":0,
                 "y":46.5,
                 "style":{
+                    "align":"C",
                     "font":{
                         "family":"Arial",
                         "size":6.5
