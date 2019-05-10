@@ -60,7 +60,7 @@ div .kijs-dataview .kijs-dataviewelement{
 }
 
 .kijs-dataview .kijs-dataviewelement .portrait{
-    height: 165px;
+    width: 126px;
     float: right;
     margin-left: 5px;
     vertical-align: top;  
