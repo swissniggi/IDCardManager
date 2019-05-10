@@ -86,7 +86,9 @@
                 "items":[
                     {
                         "fn":"image",
-                        "file":"[imgPath]"
+                        "file":"[imgPath]",
+                        "width":22,
+                        "height":28.8
                     }
                 ]
             },{
