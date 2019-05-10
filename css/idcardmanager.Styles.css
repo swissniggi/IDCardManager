@@ -36,12 +36,12 @@ div.kijs-spinbox {
 }
 
 div .kijs-dataview .kijs-dataviewelement{
-    width: 400px;
+    width: 380px;
 }
 
 .kijs-dataview .kijs-dataviewelement .outerdiv{
     display: inline-block;
-    width: 210px;
+    width: 230px;
     margin-left: 4px;
     margin-top: 4px;
 }
