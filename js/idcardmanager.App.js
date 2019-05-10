@@ -253,6 +253,10 @@ idcardmanager.App = class idcardmanager_App {
         }, this, false, this._viewport, 'dom', false);
     }
     
+    /**
+     * GET-Parameter erstellen und weiterleiten
+     * @returns {Boolean}
+     */
     _onBtnPrintClick() {
         let arraySelectedUsers = this._userDataView.getSelected();
         
