@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require 'kireport/kireport_PDF.php';
-require 'php/IDCardManager_Controller.php';
+require '../kireport/kireport_PDF.php';
+require '../php/IDCardManager_Controller.php';
 
 $arrayDataRows = [];
 $arrayPrintedUsers = [];
