@@ -254,7 +254,21 @@ idcardmanager.App = class idcardmanager_App {
     }
     
     _onBtnPrintClick() {
+        let arraySelectedUsers = this._userDataView.getSelected();
         
+        if (arraySelectedUsers.length === 0) {
+            kijs.gui.MsgBox.info('Achtung','Keine Benutzer ausgewählt!');
+        } else {
+            let stringUserData = [];
+            
+            for (var i = 0; i < arraySelectedUsers.length; i++) {
+                let row = arraySelectedUsers[i];
+                
+                for (var cell in row) {
+                    stringUserData = cell;
+                }
+            }
+        }
     }
     
     /**
