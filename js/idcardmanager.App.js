@@ -259,13 +259,13 @@ idcardmanager.App = class idcardmanager_App {
         if (arraySelectedUsers.length === 0) {
             kijs.gui.MsgBox.info('Achtung','Keine Benutzer ausgewählt!');
         } else {
-            let stringUserData = [];
+            let stringUserData = '';
             
             for (var i = 0; i < arraySelectedUsers.length; i++) {
                 let row = arraySelectedUsers[i];
                 
                 for (var cell in row) {
-                    stringUserData = cell;
+                    stringUserData += cell;
                 }
             }
         }
