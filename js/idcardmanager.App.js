@@ -265,9 +265,20 @@ idcardmanager.App = class idcardmanager_App {
                 let row = arraySelectedUsers[i].dataRow;
                 
                 for (var cell in row) {
-                    stringUserData += cell;
+                    if (row[cell] === '') {
+                        kijs.gui.MsgBox.error(
+                                'Fehler!', 
+                                'Die Daten eines ausgewählten Benutzers sind unvollständig!'
+                                );
+                        return false;
+                    }
+                    stringUserData += cell + i + '=' + row[cell] + '&';
                 }
             }
+            // letztes &-Zeichen entfernen
+            stringUserData = stringUserData.slice(0,-1);
+            
+            window.open('php/IDCardManager_PrintPDF.php?'+stringUserData, 'Personalausweise');
         }
     }
     
