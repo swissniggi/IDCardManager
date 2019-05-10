@@ -13,15 +13,15 @@ try {
 
     // Array mit den Benutzerdaten füllen
     for ($i = 0; $i < count($arrayGetData)/6; $i++) {
-        $arrayDataRows[$i]['lastName'] = $arrayGetData['lastName'+$i];
-        $arrayDataRows[$i]['firstName'] = $arrayGetData['firstName'+$i];
-        $arrayDataRows[$i]['title'] = $arrayGetData['title'+$i];
-        $arrayDataRows[$i]['validDate'] = $arrayGetData['validDate'+$i];
-        $arrayDataRows[$i]['employeeId'] = $arrayGetData['employeeId'+$i];
-        $arrayDataRows[$i]['imgPath'] = $arrayGetData['imgPath'+$i];
+        $arrayDataRows[$i]['lastName'] = $arrayGetData['lastName'.$i];
+        $arrayDataRows[$i]['firstName'] = $arrayGetData['firstName'.$i];
+        $arrayDataRows[$i]['title'] = $arrayGetData['title'.$i];
+        $arrayDataRows[$i]['validDate'] = $arrayGetData['validDate'.$i];
+        $arrayDataRows[$i]['employeeId'] = $arrayGetData['employeeId'.$i];
+        $arrayDataRows[$i]['imgPath'] = $arrayGetData['imgPath'.$i];
 
         // Vorname und Name für Logeintrag speichern
-        $arrayPrintedUsers[] = $arrayGetData['firstName'+$i] + ' ' + $arrayGetData['lastName'+$i];
+        $arrayPrintedUsers[] = $arrayGetData['firstName'.$i] + ' ' + $arrayGetData['lastName'.$i];
     }
 
     // Berichtskonfiguration auslesen
