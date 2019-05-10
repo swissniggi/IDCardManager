@@ -45,5 +45,7 @@ try {
 } catch (Throwable $ex) {
     $sMsg = 'Fehler beim Drucken der Personalausweise! '.$ex->getMessage();
     IDCardManager_Controller::writeLog($sMsg);
+    
+    // Fehlerseite aufrufen
     header('Location: template/error500.html');
 }
