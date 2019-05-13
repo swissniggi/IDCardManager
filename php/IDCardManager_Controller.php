@@ -346,7 +346,12 @@ class IDCardManager_Controller {
         try{
             $sUsername = mb_strtolower($arrayUserData->username);
             $sPassword = $arrayUserData->password;
-            $sGroupDn = $this->arrayLdap->groupDn;
+            
+            if ($this->arrayLdap->groupDn !== '') {
+                $sGroupdn = $this->arrayLdap->groupDn;
+            } else {
+                $sGroupdn = $this->arrayLdap->dn;
+            }
 
             $con = ldap_connect($this->arrayLdap->ldapConnection);
             $arrayConParts = explode('.',$this->arrayLdap->ldapConnection);
