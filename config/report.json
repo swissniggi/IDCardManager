@@ -25,7 +25,7 @@
                         "value":"Personalausweis [employeeId]",
                         "style":{
                             "width":40,
-                            "align":"R",
+                            "textAlign":"R",
                             "font":{
                                 "style":"B",
                                 "family":"Arial",
