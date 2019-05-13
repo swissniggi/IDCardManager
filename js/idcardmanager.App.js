@@ -148,6 +148,7 @@ idcardmanager.App = class idcardmanager_App {
                                 toolTip: 'Mindestens ein Feld muss ausgefüllt werden.'
                                         +'<br />Das Zeichen &#x2731; kann bei Name und'
                                         +' Vorname als Wildcard eingesetzt werden.',
+                                width: 16,
                                 style:{
                                     margin: '0 10px 0 10px',
                                     color: '#4398dd'
