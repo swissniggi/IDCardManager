@@ -152,26 +152,6 @@ idcardmanager.App = class idcardmanager_App {
                                     margin: '0 10px 0 10px',
                                     color: '#4398dd'
                                 }
-                            },{
-                                xtype: 'kijs.gui.Container',
-                                elements:[                                    
-                                    {
-                                        xtype: 'kijs.gui.Button',
-                                        name: 'btnSearch',
-                                        isDefault: true,
-                                        iconChar: '&#xf002',
-                                        height: 30,
-                                        caption: 'Suchen',
-                                        on:{
-                                            click: this._onBtnSearchClick,
-                                            context: this
-                                        },
-                                        style:{
-                                            margin: '0 10px 10px 10px',
-                                            float: 'right'
-                                        }
-                                    }
-                                ]
                             }
                         ],
                         footerStyle:{
@@ -180,7 +160,22 @@ idcardmanager.App = class idcardmanager_App {
                             display: 'contents'
                         },
                         footerElements:[
-                            
+                            {
+                                xtype: 'kijs.gui.Button',
+                                name: 'btnSearch',
+                                isDefault: true,
+                                iconChar: '&#xf002',
+                                height: 30,
+                                caption: 'Suchen',
+                                on:{
+                                    click: this._onBtnSearchClick,
+                                    context: this
+                                },
+                                style:{
+                                    margin: '0 10px 10px 10px',
+                                    float: 'right'
+                                }
+                            }
                         ]
                     },{
                         xtype: 'kijs.gui.Splitter',
