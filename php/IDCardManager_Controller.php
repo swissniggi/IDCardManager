@@ -348,9 +348,9 @@ class IDCardManager_Controller {
             $sPassword = $arrayUserData->password;
             
             if ($this->arrayLdap->groupDn !== '') {
-                $sGroupdn = $this->arrayLdap->groupDn;
+                $sGroupDn = $this->arrayLdap->groupDn;
             } else {
-                $sGroupdn = $this->arrayLdap->dn;
+                $sGroupDn = $this->arrayLdap->dn;
             }
 
             $con = ldap_connect($this->arrayLdap->ldapConnection);
