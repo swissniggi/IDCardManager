@@ -153,7 +153,7 @@ idcardmanager.App = class idcardmanager_App {
                                     color: '#4398dd'
                                 }
                             },{
-                                xtype: 'kijs.gui.Panel',
+                                xtype: 'kijs.gui.Container',
                                 elements:[                                    
                                     {
                                         xtype: 'kijs.gui.Button',
