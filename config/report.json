@@ -24,6 +24,7 @@
                         "fn":"field",
                         "value":"Personalausweis [employeeId]",
                         "style":{
+                            "width":40,
                             "align":"R",
                             "font":{
                                 "style":"B",
