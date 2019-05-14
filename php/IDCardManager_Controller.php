@@ -142,15 +142,15 @@ class IDCardManager_Controller {
     
     /**
      * Fehler ins Errorlog schreiben
-     * @param Exception $objectException
+     * @param Exception $exException
      */
-    public static function writeErrorLog($objectException) {
+    public static function writeErrorLog($exException) {
         $dateNow = date('d.m.Y, H:i:s');
         $sMsg = '['.$dateNow."]\r\n";
-        $sMsg .= ' --> Fehler: '.$objectException->getMessage()."\r\n";
-        $sMsg .= ' --> Errorcode: '.$objectException->getCode()."\r\n";
-        $sMsg .= ' --> Aufgetreten in: '.$objectException->getFile()."\r\n";
-        $sMsg .= ' --> Auf Zeile: '.$objectException->getLine()."\r\n";
+        $sMsg .= ' --> Fehler: '.$exException->getMessage()."\r\n";
+        $sMsg .= ' --> Errorcode: '.$exException->getCode()."\r\n";
+        $sMsg .= ' --> Aufgetreten in: '.$exException->getFile()."\r\n";
+        $sMsg .= ' --> Auf Zeile: '.$exException->getLine()."\r\n";
         file_put_contents(self::$sErrorLogPath, $sMsg."\r\n", FILE_APPEND);
     }
     
