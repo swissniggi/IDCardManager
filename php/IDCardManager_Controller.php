@@ -212,7 +212,7 @@ class IDCardManager_Controller {
         if ($this->arrayLdap->imageFolder !== '' && isset($arrayUserInfo[$intIndex]['samaccountname'][0])) {
             if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
                 // Portrait vom Bildordner in temporären Ordner kopieren
-                copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
+                copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.session_id().'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
                 $sPicturePath = 'userImages/'.session_id().'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
