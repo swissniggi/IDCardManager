@@ -70,7 +70,7 @@ class IDCardManager_Controller {
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
                                 self::writeLog($arrayReturn);
-                                if ($arrayReturn->getCode() === 123) {
+                                if ($arrayReturn->getCode() === 5) {
                                     $objectResponse->errorMsg = $arrayReturn->getMessage();
                                 } else {
                                     $objectResponse->errorMsg = 'Anmeldung fehlgeschlagen: Passwort oder Benutzername falsch!';
@@ -308,7 +308,11 @@ class IDCardManager_Controller {
         $arrayUserInfo = ldap_get_entries($con, $arrayUserSearchResult);
         
         if ($arrayUserInfo['count'] === 0) {
-            throw new Exception('Die Suche lieferte keine Ergebnisse.', 0);
+            throw new Exception(
+                    'Die Suche lieferte keine Ergebnisse.',
+                    0,
+                    __FILE__,
+                    310);
         } else {
             return $arrayUserInfo;
         }
@@ -386,8 +390,9 @@ class IDCardManager_Controller {
             if (!$boolIsMember) {
                 throw new Exception (
                         'Zugriff verweigert! Der Benutzer gehört nicht zur autorisierten Gruppe.',
-                        0,
-                        __FILE__, 386
+                        5,
+                        __FILE__, 
+                        386
                         );
             }
             
@@ -476,7 +481,7 @@ class IDCardManager_Controller {
                     'Fehler beim Ändern der Benutzerdaten!',
                     0,
                     __FILE__,
-                    474);
+                    472);
         }
         // Notieren, wer welchen Benutzer bearbeitet hat
         self::writeLog(
