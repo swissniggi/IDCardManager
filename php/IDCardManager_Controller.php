@@ -205,7 +205,7 @@ class IDCardManager_Controller {
         
         // temporären Ordner gegebenenfalls erstellen
         if (!is_dir('userImages/'.session_id())) {
-            mkdir('userImages', 0777, true);
+            mkdir('userImages/'.session_id(), 0777, true);
         }
         
         // Anzeigebild auslesen
