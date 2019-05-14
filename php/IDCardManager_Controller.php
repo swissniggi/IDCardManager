@@ -87,6 +87,7 @@ class IDCardManager_Controller {
                         
                         // Logout ausführen
                         case 'idcardmanager.logoutUser':
+                            IDCardManager_ImageManipulator::deleteAllImages();
                             session_destroy();
                             break;
                         
