@@ -204,8 +204,8 @@ class IDCardManager_Controller {
         $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
         // temporären Ordner gegebenenfalls erstellen
-        if (!is_dir('userImages')) {
-            mkdir('userImages', 0777);
+        if (!is_dir('userImages/'.session_id())) {
+            mkdir('userImages', 0777, true);
         }
         
         // Anzeigebild auslesen
