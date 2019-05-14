@@ -204,8 +204,9 @@ class IDCardManager_Controller {
         $sLastName = $this->_getLastName($arrayUserInfo, $intIndex);
         
         // temporären Ordner gegebenenfalls erstellen
-        if (!is_dir('userImages/'.session_id())) {
-            mkdir('userImages/'.session_id(), 0777, true);
+        $sFolderPath = 'userImages/'.session_id();
+        if (!is_dir($sFolderPath)) {
+            mkdir($sFolderPath, 0777, true);
         }
         
         // Anzeigebild auslesen
@@ -214,9 +215,9 @@ class IDCardManager_Controller {
                 // Portrait vom Bildordner in temporären Ordner kopieren
                 copy(
                         $this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 
-                        'userImages/'.session_id().'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg'
+                        $sFolderPath.'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg'
                         );
-                $sPicturePath = 'userImages/'.session_id().'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
+                $sPicturePath = $sFolderPath.'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 $sPicturePath = 'img/noimg.jpg';
@@ -226,7 +227,7 @@ class IDCardManager_Controller {
                 $imgString = $arrayUserInfo[$intIndex]['thumbnailphoto'][0];
                 IDCardManager_ImageManipulator::saveImage($sLastName, $sFirstName, $imgString);
                 // Pfad des Bildes ermitteln
-                $sPicturePath = 'userImages/'.session_id().'/'.$sLastName . '_' . $sFirstName . '.jpg';
+                $sPicturePath = $sFolderPath.'/'.$sLastName . '_' . $sFirstName . '.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 $sPicturePath = 'img/noimg.jpg';
