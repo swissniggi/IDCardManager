@@ -308,11 +308,7 @@ class IDCardManager_Controller {
         $arrayUserInfo = ldap_get_entries($con, $arrayUserSearchResult);
         
         if ($arrayUserInfo['count'] === 0) {
-            throw new Exception(
-                    'Die Suche lieferte keine Ergebnisse.',
-                    0,
-                    __FILE__,
-                    310);
+            throw new Exception('Die Suche lieferte keine Ergebnisse.', 0);
         } else {
             return $arrayUserInfo;
         }
@@ -388,12 +384,7 @@ class IDCardManager_Controller {
             }
             
             if (!$boolIsMember) {
-                throw new Exception (
-                        'Zugriff verweigert! Der Benutzer gehört nicht zur autorisierten Gruppe.',
-                        5,
-                        __FILE__, 
-                        386
-                        );
+                throw new Exception ('Zugriff verweigert! Der Benutzer gehört nicht zur autorisierten Gruppe.', 5);
             }
             
             $arrayReturn = array('username' => $sUsername);
@@ -477,11 +468,7 @@ class IDCardManager_Controller {
         $boolReplaceSuccessful = ldap_mod_replace($con, $sUserDn, $arrayNewUserData);
         
         if (!$boolReplaceSuccessful) {
-            throw new Exception(
-                    'Fehler beim Ändern der Benutzerdaten!',
-                    0,
-                    __FILE__,
-                    472);
+            throw new Exception('Fehler beim Ändern der Benutzerdaten!', 0);
         }
         // Notieren, wer welchen Benutzer bearbeitet hat
         self::writeLog(
