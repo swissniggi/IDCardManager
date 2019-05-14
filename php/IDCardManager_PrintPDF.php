@@ -41,10 +41,9 @@ try {
     foreach ($arrayPrintedUsers as $sPrintedUser) {
         $sMsg .= $sPrintedUser.', ';
     }
-    IDCardManager_Controller::writeLog($sMsg);
+    IDCardManager_Controller::writeChangeLog($sMsg);
 } catch (Throwable $ex) {
-    $sMsg = 'Fehler beim Drucken der Personalausweise! '.$ex->getMessage();
-    IDCardManager_Controller::writeLog($sMsg);
+    IDCardManager_Controller::writeErrorLog($ex);
     
     // Fehlerseite aufrufen
     header('Location: template/error500.html');

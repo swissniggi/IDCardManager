@@ -3,7 +3,8 @@ class IDCardManager_Controller {
 	
     protected $arrayLdap = [];
     protected $sUsername = null;
-    protected static $sLogpath = 'C:/logs/changelog.txt';
+    protected static $sChangeLogPath = 'C:/logs/changelog.txt';
+    protected static $sErrorLogPath = 'C:/logs/errorlog.txt';
     
     // --------------------------------------------------------------
     // CONSTRUCTOR
@@ -51,7 +52,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn);
+                                self::writeErrorLog($arrayReturn);
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
                                 $objectResponse->responseData = new stdClass();
@@ -69,7 +70,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn);
+                                self::writeErrorLog($arrayReturn);
                                 if ($arrayReturn->getCode() === 5) {
                                     $objectResponse->errorMsg = $arrayReturn->getMessage();
                                 } else {
@@ -94,7 +95,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn);
+                                self::writeErrorLog($arrayReturn);
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
                                 $objectResponse->responseData = new stdClass();
@@ -107,7 +108,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_updateADUser($objectRequest->requestData->formData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn);
+                                self::writeErrorLog($arrayReturn);
                             } else {
                                 $objectResponse->responseData = array(
                                     'success' => true
@@ -116,7 +117,7 @@ class IDCardManager_Controller {
                             break;
                     }
                 } catch (Exception $ex) {
-                    self::writeLog($ex);
+                    self::writeErrorLog($ex);
                     $objectResponse->errorMsg = $ex->getMessage();
                 }
                 $objectResponses[] = $objectResponse;
@@ -130,17 +131,27 @@ class IDCardManager_Controller {
     
     
     /**
-     * Meldung ins Logfile schreiben
+     * Meldung ins Changelog schreiben
+     * @param string $sMsg
+     */
+    public static function writeChangeLog($sMsg) {
+        $dateNow = date('d.m.Y, H:i:s');
+        file_put_contents(self::$sChangeLogPath, $dateNow.' '.$sMsg."\r\n", FILE_APPEND);
+    }
+    
+    
+    /**
+     * Fehler ins Errorlog schreiben
      * @param Exception $objectException
      */
-    public static function writeLog($objectException) {
+    public static function writeErrorLog($objectException) {
         $dateNow = date('d.m.Y, H:i:s');
         $sMsg = $dateNow."\r\n";
         $sMsg .= ' --> Fehler: '.$objectException->getMessage()."\r\n";
         $sMsg .= ' --> Errorcode: '.$objectException->getCode()."\r\n";
         $sMsg .= ' --> Aufgetreten in: '.$objectException->getFile()."\r\n";
         $sMsg .= ' --> Auf Zeile: '.$objectException->getLine()."\r\n";
-        file_put_contents(self::$sLogpath, $sMsg."\r\n", FILE_APPEND);
+        file_put_contents(self::$sErrorLogPath, $sMsg."\r\n", FILE_APPEND);
     }
     
     // --------------------------------------------------------------
@@ -471,11 +482,9 @@ class IDCardManager_Controller {
             throw new Exception('Fehler beim Ändern der Benutzerdaten!', 0);
         }
         // Notieren, wer welchen Benutzer bearbeitet hat
-        self::writeLog(
-                'Der Benutzer '.$this->sUsername.
+        self::writeChangeLog('Der Benutzer '.$this->sUsername.
                 ' hat die Daten von '.$firstName.' '.
-                $lastName.' erfolreich bearbeitet.'
-                );
+                $lastName.' erfolreich bearbeitet.');
         return true;
     }
 }
