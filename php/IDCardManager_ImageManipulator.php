@@ -28,6 +28,7 @@ class IDCardManager_ImageManipulator {
         foreach ($arrayImages as $img) {
             unlink('userImages/'.session_id().'/'.$img);
         }
+        // temporären Ordner entfernen
         rmdir('userImages/'.session_id());
     }
 }
