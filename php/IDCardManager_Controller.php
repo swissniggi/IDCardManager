@@ -3,8 +3,8 @@ class IDCardManager_Controller {
 	
     protected $arrayLdap = [];
     protected $sUsername = null;
-    protected static $sChangeLogPath = 'C:/logs/changelog.txt';
-    protected static $sErrorLogPath = 'C:/logs/errorlog.txt';
+    protected static $sChangeLogPath = 'C:/logs/changelog.log';
+    protected static $sErrorLogPath = 'C:/logs/errorlog.log';
     
     // --------------------------------------------------------------
     // CONSTRUCTOR
@@ -136,7 +136,7 @@ class IDCardManager_Controller {
      */
     public static function writeChangeLog($sMsg) {
         $dateNow = date('d.m.Y, H:i:s');
-        file_put_contents(self::$sChangeLogPath, $dateNow.' '.$sMsg."\r\n", FILE_APPEND);
+        file_put_contents(self::$sChangeLogPath, '['.$dateNow.'] '.$sMsg."\r\n", FILE_APPEND);
     }
     
     
@@ -146,7 +146,7 @@ class IDCardManager_Controller {
      */
     public static function writeErrorLog($objectException) {
         $dateNow = date('d.m.Y, H:i:s');
-        $sMsg = $dateNow."\r\n";
+        $sMsg = '['.$dateNow."]\r\n";
         $sMsg .= ' --> Fehler: '.$objectException->getMessage()."\r\n";
         $sMsg .= ' --> Errorcode: '.$objectException->getCode()."\r\n";
         $sMsg .= ' --> Aufgetreten in: '.$objectException->getFile()."\r\n";
