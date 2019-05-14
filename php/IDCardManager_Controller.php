@@ -51,7 +51,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                $this->_writeLog($arrayReturn->getMessage());
+                                self::writeLog($arrayReturn);
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
                                 $objectResponse->responseData = new stdClass();
@@ -69,7 +69,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_loginUser($objectRequest->requestData->formData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn->getMessage());
+                                self::writeLog($arrayReturn);
                                 if ($arrayReturn->getCode() === 123) {
                                     $objectResponse->errorMsg = $arrayReturn->getMessage();
                                 } else {
@@ -94,7 +94,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_searchADUser($objectRequest->requestData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn->getMessage());
+                                self::writeLog($arrayReturn);
                                 $objectResponse->errorMsg = $arrayReturn->getMessage();
                             } else {
                                 $objectResponse->responseData = new stdClass();
@@ -107,7 +107,7 @@ class IDCardManager_Controller {
                             $arrayReturn = $this->_updateADUser($objectRequest->requestData->formData);
                             
                             if ($arrayReturn instanceof Exception || $arrayReturn instanceof Error) {
-                                self::writeLog($arrayReturn->getMessage());
+                                self::writeLog($arrayReturn);
                             } else {
                                 $objectResponse->responseData = array(
                                     'success' => true
@@ -116,7 +116,7 @@ class IDCardManager_Controller {
                             break;
                     }
                 } catch (Exception $ex) {
-                    self::writeLog($ex->getMessage());
+                    self::writeLog($ex);
                     $objectResponse->errorMsg = $ex->getMessage();
                 }
                 $objectResponses[] = $objectResponse;
@@ -131,11 +131,16 @@ class IDCardManager_Controller {
     
     /**
      * Meldung ins Logfile schreiben
-     * @param string $stringMsg
+     * @param Exception $objectException
      */
-    public static function writeLog($stringMsg) {
+    public static function writeLog($objectException) {
         $dateNow = date('d.m.Y, H:i:s');
-        file_put_contents(self::$sLogpath, $dateNow.' '.$stringMsg."\r\n", FILE_APPEND);
+        $sMsg = $dateNow."\r\n";
+        $sMsg .= '\t Fehler: '.$objectException->getMessage()."\r\n";
+        $sMsg .= '\t Errorcode: '.$objectException->getCode()."\r\n";
+        $sMsg .= '\t Aufgetreten in: '.$objectException->getFile()."\r\n";
+        $sMsg .= '\t Auf Zeile: '.$objectException->getLine()."\r\n";
+        file_put_contents(self::$sLogpath, $sMsg."\r\n", FILE_APPEND);
     }
     
     // --------------------------------------------------------------
@@ -199,7 +204,6 @@ class IDCardManager_Controller {
                 $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
-                self::writeLog('Datei '.$this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg nicht gefunden.');
                 $sPicturePath = 'img/noimg.jpg';
             }
         } else {
@@ -304,7 +308,7 @@ class IDCardManager_Controller {
         $arrayUserInfo = ldap_get_entries($con, $arrayUserSearchResult);
         
         if ($arrayUserInfo['count'] === 0) {
-            throw new Exception('Die Suche lieferte keine Ergebnisse.');
+            throw new Exception('Die Suche lieferte keine Ergebnisse.', 0);
         } else {
             return $arrayUserInfo;
         }
@@ -380,7 +384,7 @@ class IDCardManager_Controller {
             }
             
             if (!$boolIsMember) {
-                throw new Exception ('Zugriff verweigert!');
+                throw new Exception ('Zugriff verweigert!', 0);
             }
             
             $arrayReturn = array('username' => $sUsername);
@@ -464,7 +468,7 @@ class IDCardManager_Controller {
         $boolReplaceSuccessful = ldap_mod_replace($con, $sUserDn, $arrayNewUserData);
         
         if (!$boolReplaceSuccessful) {
-            throw new Exception('Fehler beim Ändern der Benutzerdaten!');
+            throw new Exception('Fehler beim Ändern der Benutzerdaten!', 0);
         }
         // Notieren, wer welchen Benutzer bearbeitet hat
         self::writeLog(
