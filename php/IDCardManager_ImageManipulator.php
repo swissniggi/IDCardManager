@@ -12,8 +12,9 @@ class IDCardManager_ImageManipulator {
      * @param string $sImgString
      */
     public static function saveImage($sLastName, $sFirstName, $sImgString) {
+        session_start();
         $img = imagecreatefromstring($sImgString);                       
-        imagejpeg($img, 'userImages/'.$sLastName.'_'.$sFirstName.'.jpg');
+        imagejpeg($img, 'userImages/'.session_id().'/'.$sLastName.'_'.$sFirstName.'.jpg');
         imagedestroy($img);
     }
     
@@ -22,7 +23,8 @@ class IDCardManager_ImageManipulator {
      * alle Bilder im temporären Ordner löschen
      */
     public static function deleteAllImages() {
-        $arrayAllFiles = scandir('userImages');
+        session_start();
+        $arrayAllFiles = scandir('userImages/'.session_id());
         $arrayImages = array_diff($arrayAllFiles, array('.', '..'));
         
         foreach ($arrayImages as $img) {

@@ -82,6 +82,9 @@ class IDCardManager_Controller {
                                 );
                                 // Benutzername in Session speichern
                                 $_SESSION['username'] = $arrayReturn['username'];
+                                
+                                // Session-ID generieren
+                                session_create_id();
                             }
                             break;
                         
@@ -155,7 +158,7 @@ class IDCardManager_Controller {
     }
     
     // --------------------------------------------------------------
-    // PRIVATE MENBERS
+    // PRIVATE MEMBERS
     // --------------------------------------------------------------
     /**
      * Personalnummer des Benutzers ermitteln
@@ -212,7 +215,7 @@ class IDCardManager_Controller {
             if (is_file($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg')) {
                 // Portrait vom Bildordner in temporären Ordner kopieren
                 copy($this->arrayLdap->imageFolder.'\\'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg', 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg');
-                $sPicturePath = 'userImages/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
+                $sPicturePath = 'userImages/'.session_id().'/'.$arrayUserInfo[$intIndex]['samaccountname'][0].'.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 $sPicturePath = 'img/noimg.jpg';
@@ -222,7 +225,7 @@ class IDCardManager_Controller {
                 $imgString = $arrayUserInfo[$intIndex]['thumbnailphoto'][0];
                 IDCardManager_ImageManipulator::saveImage($sLastName, $sFirstName, $imgString);
                 // Pfad des Bildes ermitteln
-                $sPicturePath = 'userImages/'.$sLastName . '_' . $sFirstName . '.jpg';
+                $sPicturePath = 'userImages/'.session_id().'/'.$sLastName . '_' . $sFirstName . '.jpg';
             } else {
                 // Pfad des Platzhalterbildes übergeben
                 $sPicturePath = 'img/noimg.jpg';
