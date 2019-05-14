@@ -84,7 +84,8 @@ class IDCardManager_Controller {
                                 $_SESSION['username'] = $arrayReturn['username'];
                                 
                                 // Session-ID generieren
-                                session_create_id();
+                                $sSessionId = session_create_id();
+                                session_id($sSessionId);
                             }
                             break;
                         
