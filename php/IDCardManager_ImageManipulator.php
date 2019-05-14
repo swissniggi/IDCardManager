@@ -30,6 +30,7 @@ class IDCardManager_ImageManipulator {
         foreach ($arrayImages as $img) {
             unlink('userImages/'.$img);
         }
+        rmdir('userImages/'.session_id());
     }
 }
 
