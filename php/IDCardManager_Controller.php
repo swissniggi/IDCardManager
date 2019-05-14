@@ -136,10 +136,10 @@ class IDCardManager_Controller {
     public static function writeLog($objectException) {
         $dateNow = date('d.m.Y, H:i:s');
         $sMsg = $dateNow."\r\n";
-        $sMsg .= '\t Fehler: '.$objectException->getMessage()."\r\n";
-        $sMsg .= '\t Errorcode: '.$objectException->getCode()."\r\n";
-        $sMsg .= '\t Aufgetreten in: '.$objectException->getFile()."\r\n";
-        $sMsg .= '\t Auf Zeile: '.$objectException->getLine()."\r\n";
+        $sMsg .= "\t".' Fehler: '.$objectException->getMessage()."\r\n";
+        $sMsg .= "\t".' Errorcode: '.$objectException->getCode()."\r\n";
+        $sMsg .= "\t".' Aufgetreten in: '.$objectException->getFile()."\r\n";
+        $sMsg .= "\t".' Auf Zeile: '.$objectException->getLine()."\r\n";
         file_put_contents(self::$sLogpath, $sMsg."\r\n", FILE_APPEND);
     }
     
