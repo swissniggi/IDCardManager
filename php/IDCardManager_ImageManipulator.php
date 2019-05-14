@@ -28,7 +28,7 @@ class IDCardManager_ImageManipulator {
         $arrayImages = array_diff($arrayAllFiles, array('.', '..'));
         
         foreach ($arrayImages as $img) {
-            unlink('userImages/'.$img);
+            unlink('userImages/'.session_id().'/'.$img);
         }
         rmdir('userImages/'.session_id());
     }
