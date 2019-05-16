@@ -1,0 +1,9 @@
+{
+    "ldapConnection":"ldap://IPA-EFZ-DC.EFZ.local",
+    "ldapUsername":"adsfotoimport",
+    "ldapPassword":"Salomon19",
+    "dn":"CN=Users,DC=EFZ,DC=local",
+    "groupDn":"",
+    "group":"CN=Domänen-Admins",
+    "imageFolder":"\\\\IPA-EFZ-FS\\Mitarbeiterfotos"
+}
