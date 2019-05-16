@@ -22,14 +22,18 @@ class IDCardManager_ImageManipulator {
      * alle Bilder im temporären Ordner löschen
      */
     public static function deleteAllImages() {
-        $arrayAllFiles = scandir('userImages/'.session_id());
-        $arrayImages = array_diff($arrayAllFiles, array('.', '..'));
+        $imgDir = 'userImages/'.session_id();
         
-        foreach ($arrayImages as $img) {
-            unlink('userImages/'.session_id().'/'.$img);
+        if (is_dir($imgDir)) {
+            $arrayAllFiles = scandir($imgDir);
+            $arrayImages = array_diff($arrayAllFiles, array('.', '..'));
+
+            foreach ($arrayImages as $img) {
+                unlink($imgDir.'/'.$img);
+            }
+            // temporären Ordner entfernen
+            rmdir($imgDir);
         }
-        // temporären Ordner entfernen
-        rmdir('userImages/'.session_id());
     }
 }
 

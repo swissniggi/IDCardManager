@@ -12,7 +12,7 @@ class IDCardManager_Controller {
     public function __construct() {
         session_start();
         
-        $this->arrayLdap = json_decode(file_get_contents(realpath('config/config.json')));
+        $this->arrayLdap = json_decode(file_get_contents(realpath('C:/idc_config/config/config.json')));
         
         if (isset($_SESSION['username'])) {
             $this->sUsername = $_SESSION['username'];
