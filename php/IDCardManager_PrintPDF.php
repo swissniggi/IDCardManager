@@ -25,7 +25,7 @@ try {
     }
 
     // Berichtskonfiguration auslesen
-    $objectReportConfig = json_decode(file_get_contents(realpath('../config/report.json')));
+    $objectReportConfig = json_decode(file_get_contents(realpath('../reportConfig/report.json')));
 
     // Dimensionen des Personalausweises übergeben
     $objectReportConfig->size = array(86.4,54);
