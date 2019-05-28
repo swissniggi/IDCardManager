@@ -458,8 +458,6 @@ class IDCardManager_Controller {
      * @throws Exception
      */
     private function _updateADUser($arrayUserData) {
-        $arrayUserName = explode(' ', $arrayUserData->name);
-        
         // Gültigkeitsdatum in korrektes Format umwandeln
         $floatValidSek = floatval(date("U", strtotime($arrayUserData->valid)) + 11644473600);
         $floatValidNano = $floatValidSek * 1.E7;
@@ -475,9 +473,8 @@ class IDCardManager_Controller {
         ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
         
         // Benutzer auslesen
-        $firstName = utf8_decode($arrayUserName[0]);
-        $lastName = utf8_decode($arrayUserName[1]);
-        $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, '(&(givenName='.$firstName.')(sn='.$lastName.'))');
+        $fullName = utf8_decode($arrayUserData->name);
+        $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, '(cn='.$fullName.')');
         $arrayFirstEntry = ldap_first_entry($con, $arrayUserInfo);
         
         // Daten ersetzen
@@ -489,8 +486,7 @@ class IDCardManager_Controller {
         }
         // Notieren, wer welchen Benutzer bearbeitet hat
         self::writeChangeLog('Der Benutzer '.$this->sUsername.
-                ' hat die Daten von '.$firstName.' '.
-                $lastName.' erfolreich bearbeitet.');
+                ' hat die Daten von '.$arrayUserData->name.' erfolreich bearbeitet.');
         return true;
     }
 }
