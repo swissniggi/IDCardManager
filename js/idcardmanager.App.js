@@ -292,7 +292,13 @@ idcardmanager.App = class idcardmanager_App {
      * Suche ausführen
      * @returns {Boolean}
      */
-    _onBtnSearchClick() {
+    _onBtnSearchClick() {           
+        // Suchparameter aus SessionStorage löschen
+        sessionStorage.removeItem('lastName');
+        sessionStorage.removeItem('firstName');
+        sessionStorage.removeItem('employeeId');
+        sessionStorage.removeItem('validDate');
+        
         let sName = this._viewport.down('name').value;
         let sFirstName = this._viewport.down('firstName').value;
         let sEmployeeId = this._viewport.down('employeeId').value;
@@ -347,12 +353,6 @@ idcardmanager.App = class idcardmanager_App {
             validDate : sessionStorage.getItem('validDate')
         };
         this._userDataView.load(data);
-        
-        // Suchparameter aus SessionStorage löschen
-        sessionStorage.removeItem('lastName');
-        sessionStorage.removeItem('firstName');
-        sessionStorage.removeItem('employeeId');
-        sessionStorage.removeItem('validDate');
         
         kijs.gui.CornerTipContainer.show('Info', 'Benutzerdaten erfolgreich aktualisiert', 'info');
         this._editorWindow.close();
