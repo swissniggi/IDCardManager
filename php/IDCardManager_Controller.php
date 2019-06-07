@@ -428,8 +428,7 @@ class IDCardManager_Controller {
             for ($i = 0; $i < $arrayUserInfo['count']; $i++) {
                 
                 // System-Benutzer mit mDBUseDefaults = false ausfiltern
-                if ($arrayUserInfo[$i]['mdbusedefaults'][0] === 'TRUE') {
-                    $arrayUserResults = array(
+                $arrayUserResults = array(
                         'lastName' => $this->_getLastName($arrayUserInfo, $i),
                         'firstName' => $this->_getFirstName($arrayUserInfo, $i),
                         'title' => $this->_getTitle($arrayUserInfo, $i),
@@ -437,8 +436,7 @@ class IDCardManager_Controller {
                         'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
                         'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
                     );
-                    $arrayReturnData[] = $arrayUserResults;
-                }
+                $arrayReturnData[] = $arrayUserResults;
             }           
             // Array alphabetisch sortieren
             usort($arrayReturnData, function($a, $b) {
