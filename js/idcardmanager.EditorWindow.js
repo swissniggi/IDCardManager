@@ -84,7 +84,7 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                 {
                     xtype: 'kijs.gui.field.Text',
                     labelWidth: 100,
-                    label: 'Vorname, Name',
+                    label: 'Name, Vorname',
                     name: 'name',
                     required: true,
                     disabled: true

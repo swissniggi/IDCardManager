@@ -57,11 +57,11 @@ class IDCardManager_Controller {
                             } else {
                                 $objectResponse->responseData = new stdClass();
                                 $objectResponse->responseData->formData = array(
-                                    'name' => $arrayReturn[0]['firstName'] . ' ' . $arrayReturn[0]['lastName'],
+                                    'name' => $arrayReturn[0]['lastName'] . ', ' . $arrayReturn[0]['firstName'],
                                     'title' => $arrayReturn[0]['title'] !== '--' ? $arrayReturn[0]['title'] : '',
-                                    'valid' => $arrayReturn[0]['validDate'] !== '--' ? $arrayReturn[0]['validDate'] : '',
+                                    'valid' => $arrayReturn[0]['validDate'],
                                     'employeeId' => $arrayReturn[0]['employeeId'] !== '--' ? $arrayReturn[0]['employeeId'] : '',
-                                    'departmentNumber' => $arrayReturn[0]['departmentNumber'] !== '--' ? $arrayReturn[0]['departmentNumber'] : ''                                                                     
+                                    'departmentNumber' => $arrayReturn[0]['departmentNumber']                                                                     
                                 );
                             }
                             break;
@@ -171,7 +171,7 @@ class IDCardManager_Controller {
         if (array_key_exists('departmentnumber', $arrayUserInfo[$intIndex])) {
             $sDepartmentNumber = $arrayUserInfo[$intIndex]['departmentnumber'][0];
         } else {
-            $sDepartmentNumber = '--';
+            $sDepartmentNumber = 0;
         }
         return utf8_encode($sDepartmentNumber);
     }
@@ -264,7 +264,7 @@ class IDCardManager_Controller {
      */
     private function _getLastName($arrayUserInfo, $intIndex) {
         if (array_key_exists('sn', $arrayUserInfo[$intIndex])) {
-            $sLastName = $arrayUserInfo[$intIndex]['sn'][0];
+            $sLastName = $arrayUserInfo[$intIndex]['sn'][0];  
         } else {
             $sLastName = '--';
         }
@@ -497,8 +497,11 @@ class IDCardManager_Controller {
         ldap_bind($con, $this->arrayLdap->ldapUsername, $this->arrayLdap->ldapPassword);
         
         // Benutzer auslesen
-        $fullName = utf8_decode($arrayUserData->name);
-        $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, '(cn='.$fullName.')');
+        $arrayName = explode(', ',$arrayUserData->name);
+        $sLastName = $arrayName[0];
+        $sFirstName = $arrayName[1];
+        $sPattern = '(&(sn='.$sLastName.')(givenName='.$sFirstName.'))';
+        $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, $sPattern);
         $arrayFirstEntry = ldap_first_entry($con, $arrayUserInfo);
         
         // Daten ersetzen
