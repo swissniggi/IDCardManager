@@ -109,6 +109,12 @@ idcardmanager.EditorWindow = class idcardmanager_EditorWindow extends kijs.gui.W
                     required: true,
                     minValue: 0
                 },{
+                    xtype: 'kijs.gui.field.Text',
+                    labelWidth: 100,
+                    label: 'Kostenstelle.',
+                    name: 'departmentNumber',
+                    required: false
+                },{
                     xtype: 'kijs.gui.Icon',
                     cls: 'help-icon',
                     iconChar: '&#xf059',

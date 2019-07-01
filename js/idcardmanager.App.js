@@ -278,7 +278,9 @@ idcardmanager.App = class idcardmanager_App {
                                 );
                         return false;
                     }
-                    stringUserData += cell + i + '=' + row[cell] + '&';
+                    if (cell !== 'departmentNumber') {
+                        stringUserData += cell + i + '=' + row[cell] + '&';
+                    }
                 }
             }
             // letztes &-Zeichen entfernen

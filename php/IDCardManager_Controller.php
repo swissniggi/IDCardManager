@@ -60,7 +60,8 @@ class IDCardManager_Controller {
                                     'name' => $arrayReturn[0]['firstName'] . ' ' . $arrayReturn[0]['lastName'],
                                     'title' => $arrayReturn[0]['title'] !== '--' ? $arrayReturn[0]['title'] : '',
                                     'valid' => $arrayReturn[0]['validDate'] !== '--' ? $arrayReturn[0]['validDate'] : '',
-                                    'employeeId' => $arrayReturn[0]['employeeId'] !== '--' ? $arrayReturn[0]['employeeId'] : ''                                                                   
+                                    'employeeId' => $arrayReturn[0]['employeeId'] !== '--' ? $arrayReturn[0]['employeeId'] : '',
+                                    'departmentNumber' => $arrayReturn[0]['departmentNumber'] !== '--' ? $arrayReturn[0]['departmentNumber'] : ''                                                                     
                                 );
                             }
                             break;
@@ -159,6 +160,23 @@ class IDCardManager_Controller {
     // --------------------------------------------------------------
     // PRIVATE MEMBERS
     // --------------------------------------------------------------
+    /**
+     * departmentNumber des Benutzers ermitteln
+     * @param array $arrayUserInfo
+     * @param int $intIndex
+     * @return string
+     */
+    private function _getDepartmentNumber($arrayUserInfo, $intIndex) {
+        // Ausweisnummer auslesen
+        if (array_key_exists('departmentnumber', $arrayUserInfo[$intIndex])) {
+            $sDepartmentNumber = $arrayUserInfo[$intIndex]['departmentnumber'][0];
+        } else {
+            $sDepartmentNumber = '--';
+        }
+        return utf8_encode($sDepartmentNumber);
+    }
+    
+    
     /**
      * Personalnummer des Benutzers ermitteln
      * @param array $arrayUserInfo
@@ -377,11 +395,17 @@ class IDCardManager_Controller {
             $con = ldap_connect($this->arrayLdap->ldapConnection);
             $arrayConParts = explode('.',$this->arrayLdap->ldapConnection);
             ldap_bind($con, $arrayConParts[1]."\\".$sUsername, $sPassword);
+            
+            if ($this->arrayLdap->group !== '') {
+                $sFilter = '('.utf8_decode($this->arrayLdap->group).')';
+            } else {
+                $sFilter = '(cn=*)';
+            }
 
             $arrayGroupSearchResult = ldap_search(
                     $con,
                     $sGroupDn,
-                    utf8_decode($this->arrayLdap->group)
+                    $sFilter
                     );
             $arrayGroupInfo = ldap_get_entries($con, $arrayGroupSearchResult);
 
@@ -434,7 +458,8 @@ class IDCardManager_Controller {
                         'title' => $this->_getTitle($arrayUserInfo, $i),
                         'validDate' => $this->_getValidDate($arrayUserInfo, $i),
                         'employeeId' => $this->_getEmployeeId($arrayUserInfo, $i),
-                        'imgPath' => $this->_getImgPath($arrayUserInfo, $i)
+                        'imgPath' => $this->_getImgPath($arrayUserInfo, $i),
+                        'departmentNumber' => $this->_getDepartmentNumber($arrayUserInfo, $i)
                     );
                 $arrayReturnData[] = $arrayUserResults;
             }           
@@ -464,7 +489,8 @@ class IDCardManager_Controller {
         $arrayNewUserData = array(
             'employeeid' => $arrayUserData->employeeId,
             'accountexpires' => $floatValid,
-            'title' => utf8_decode($arrayUserData->title)
+            'title' => utf8_decode($arrayUserData->title),
+	    'departmentNumber' => utf8_decode($arrayUserData->departmentNumber)
         );
         
         $con = ldap_connect($this->arrayLdap->ldapConnection);
