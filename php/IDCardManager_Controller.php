@@ -75,7 +75,8 @@ class IDCardManager_Controller {
                                 if ($arrayReturn->getCode() === 5) {
                                     $objectResponse->errorMsg = $arrayReturn->getMessage();
                                 } else {
-                                    $objectResponse->errorMsg = 'Anmeldung fehlgeschlagen: Passwort oder Benutzername falsch!';
+                                    $objectResponse->errorMsg = 'Anmeldung fehlgeschlagen:'.
+                                            'Die eingegebenen Daten sind möglicherweise unkorrekt!';
                                 }
                             } else {
                                 $objectResponse->responseData = array(
