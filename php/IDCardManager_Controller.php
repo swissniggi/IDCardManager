@@ -498,8 +498,8 @@ class IDCardManager_Controller {
         
         // Benutzer auslesen
         $arrayName = explode(', ',$arrayUserData->name);
-        $sLastName = $arrayName[0];
-        $sFirstName = $arrayName[1];
+        $sLastName = utf8_decode($arrayName[0]);
+        $sFirstName = utf8_decode($arrayName[1]);
         $sPattern = '(&(sn='.$sLastName.')(givenName='.$sFirstName.'))';
         $arrayUserInfo = ldap_search($con, $this->arrayLdap->dn, $sPattern);
         $arrayFirstEntry = ldap_first_entry($con, $arrayUserInfo);
